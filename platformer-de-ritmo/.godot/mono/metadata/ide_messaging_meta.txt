@@ -1,0 +1,2 @@
+﻿64533
+C:/Users/Henrique/Downloads/2025-1-platformer-de-ritmo-main/platformer-de-ritmo/bin/godot-4.2-4.4.1-stable-mono.exe
