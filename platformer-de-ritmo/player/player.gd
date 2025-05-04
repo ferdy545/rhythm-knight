@@ -36,10 +36,11 @@ func _physics_process(delta: float) -> void:
 						
 	# Get the input direction and handle the movement/deceleration
 	var direction := Input.get_axis("player_left", "player_right")
-	if direction and is_on_floor():
-		velocity.x = move_toward(velocity.x, direction * SPEED, 60)
-	elif direction:
-		velocity.x = move_toward(velocity.x, direction * SPEED, 30)
+	if direction:
+		if is_on_floor():
+			velocity.x = move_toward(velocity.x, direction * SPEED, 60)
+		else:
+			velocity.x = move_toward(velocity.x, direction * SPEED, 30)
 	else:
 		velocity.x = move_toward(velocity.x, 0, 45)
 
