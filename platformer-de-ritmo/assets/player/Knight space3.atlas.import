@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://cosnn2hk6fwaq"
+path="res://.godot/imported/Knight space3.atlas-de1ffdad61592b1a4711d674e6088553.spatlas"
+
+[deps]
+
+source_file="res://Protagonist Skeleto2/Knight space3.atlas"
+dest_files=["res://.godot/imported/Knight space3.atlas-de1ffdad61592b1a4711d674e6088553.spatlas"]
+
+[params]
+
+normal_map_prefix="n"

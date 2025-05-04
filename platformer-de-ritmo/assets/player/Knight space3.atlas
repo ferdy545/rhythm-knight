@@ -1,0 +1,132 @@
+
+Knight space3.png
+size: 1307,321
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Armor
+  rotate: true
+  xy: 582, 133
+  size: 186, 195
+  orig: 186, 195
+  offset: 0, 0
+  index: -1
+ArmorLegLeft
+  rotate: true
+  xy: 972, 152
+  size: 167, 184
+  orig: 167, 185
+  offset: 0, 0
+  index: -1
+ArmorLegRight
+  rotate: false
+  xy: 779, 144
+  size: 191, 175
+  orig: 191, 175
+  offset: 0, 0
+  index: -1
+Blade
+  rotate: false
+  xy: 2, 156
+  size: 578, 163
+  orig: 578, 163
+  offset: 0, 0
+  index: -1
+FeetLeft
+  rotate: true
+  xy: 894, 17
+  size: 125, 92
+  orig: 125, 92
+  offset: 0, 0
+  index: -1
+FeetRight
+  rotate: false
+  xy: 988, 58
+  size: 125, 92
+  orig: 125, 92
+  offset: 0, 0
+  index: -1
+HandLeft
+  rotate: false
+  xy: 411, 13
+  size: 125, 141
+  orig: 125, 141
+  offset: 0, 0
+  index: -1
+Head
+  rotate: true
+  xy: 1158, 175
+  size: 144, 147
+  orig: 144, 147
+  offset: 0, 0
+  index: -1
+LowerLegLeft
+  rotate: false
+  xy: 780, 27
+  size: 112, 115
+  orig: 112, 115
+  offset: 0, 0
+  index: -1
+LowerLegRight
+  rotate: false
+  xy: 780, 27
+  size: 112, 115
+  orig: 112, 115
+  offset: 0, 0
+  index: -1
+MiddleLeftArm
+  rotate: false
+  xy: 538, 9
+  size: 123, 122
+  orig: 123, 122
+  offset: 0, 0
+  index: -1
+MiddleRightArm
+  rotate: true
+  xy: 663, 9
+  size: 122, 115
+  orig: 122, 115
+  offset: 0, 0
+  index: -1
+RightHand
+  rotate: false
+  xy: 282, 12
+  size: 127, 142
+  orig: 127, 143
+  offset: 0, 1
+  index: -1
+SwordHandle
+  rotate: true
+  xy: 1202, 2
+  size: 72, 79
+  orig: 74, 80
+  offset: 0, 0
+  index: -1
+UpperArmLeft
+  rotate: false
+  xy: 142, 5
+  size: 138, 149
+  orig: 138, 149
+  offset: 0, 0
+  index: -1
+UpperLegLeft
+  rotate: true
+  xy: 1115, 47
+  size: 103, 85
+  orig: 103, 88
+  offset: 0, 1
+  index: -1
+UpperLegRight
+  rotate: false
+  xy: 1202, 76
+  size: 95, 97
+  orig: 95, 97
+  offset: 0, 0
+  index: -1
+UpperRightArm
+  rotate: false
+  xy: 2, 2
+  size: 138, 152
+  orig: 138, 152
+  offset: 0, 0
+  index: -1
