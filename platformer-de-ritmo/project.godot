@@ -16,7 +16,7 @@ config/icon="res://icon.svg"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/libgit_plugin.windows.editor.x86_64/plugin.cfg")
+enabled=PackedStringArray()
 
 [rendering]
 
