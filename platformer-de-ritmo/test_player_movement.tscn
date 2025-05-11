@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://biwx1p81c0qil"]
+[gd_scene load_steps=6 format=3 uid="uid://biwx1p81c0qil"]
 
-[ext_resource type="PackedScene" uid="uid://ddrf1mul53nnd" path="res://player/player.tscn" id="1_k1f4r"]
+[ext_resource type="Script" uid="uid://c6o4fo6kfg2hg" path="res://test_player_movement.gd" id="1_id003"]
+[ext_resource type="PackedScene" uid="uid://ddrf1mul53nnd" path="res://src/player/player.tscn" id="1_k1f4r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8uh7m"]
 size = Vector2(1150, 20)
@@ -11,7 +12,9 @@ size = Vector2(270.25, 147.75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_id003"]
 size = Vector2(146.75, 75)
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_id003")
+player = NodePath("CharacterBody2D")
 
 [node name="Area2D" type="RigidBody2D" parent="."]
 gravity_scale = 0.0
