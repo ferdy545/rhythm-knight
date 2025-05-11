@@ -5,8 +5,11 @@ const JUMP_VELOCITY = -400.0
 const JUMP_BUFFER_TIME = 0.1
 const COYOTE_TIME = 0.1
 
+@export var _is_parrying := false 
+@export var player_animations : AnimationPlayer
 var jump_buffer
 var coyote_buffer
+
 
 
 func _physics_process(delta: float) -> void:
@@ -57,3 +60,6 @@ func jump_buffer_timeout() -> void:
 
 func coyote_timeout() -> void:
 	coyote_buffer = false
+
+func parry():
+	player_animations.play("parry")

@@ -1,12 +1,109 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddrf1mul53nnd"]
+[gd_scene load_steps=19 format=3 uid="uid://ddrf1mul53nnd"]
 
 [ext_resource type="Script" uid="uid://bfolytv3xv7qt" path="res://src/player/player.gd" id="1_oul6g"]
+[ext_resource type="Texture2D" uid="uid://bl80lkedl58re" path="res://assets/player/player_animations/Parry_00.png" id="2_wlj80"]
+[ext_resource type="Texture2D" uid="uid://66n2m8tvsv7r" path="res://assets/player/player_animations/Parry_01.png" id="3_6bm8s"]
+[ext_resource type="Texture2D" uid="uid://cm1r564hi6rtj" path="res://assets/player/player_animations/Parry_02.png" id="4_hrerp"]
+[ext_resource type="Texture2D" uid="uid://c2dcwqypk232y" path="res://assets/player/player_animations/Parry_03.png" id="5_oyld2"]
+[ext_resource type="Texture2D" uid="uid://jfqflywy6aj6" path="res://assets/player/player_animations/Parry_04.png" id="6_vwsmr"]
+[ext_resource type="Texture2D" uid="uid://mexwkosskb8v" path="res://assets/player/player_animations/Parry_05.png" id="7_jcdrv"]
+[ext_resource type="Texture2D" uid="uid://drfaavshlbdgk" path="res://assets/player/player_animations/Parry_06.png" id="8_hja65"]
+[ext_resource type="Texture2D" uid="uid://1rexsylvqfpx" path="res://assets/player/player_animations/Parry_07.png" id="9_5shm8"]
+[ext_resource type="Texture2D" uid="uid://5276ru6nqpkj" path="res://assets/player/player_animations/Parry_08.png" id="10_5efpn"]
+[ext_resource type="Texture2D" uid="uid://dcnbgqb5mvw7v" path="res://assets/player/player_animations/Parry_09.png" id="11_4uy46"]
+[ext_resource type="Texture2D" uid="uid://rm3t8gt38x57" path="res://assets/player/player_animations/Parry_10.png" id="12_k60ra"]
+[ext_resource type="Texture2D" uid="uid://cjkrqsdocgyou" path="res://assets/player/player_animations/Parry_12.png" id="14_vwi60"]
+[ext_resource type="Texture2D" uid="uid://83m07ly8cabq" path="res://assets/player/player_animations/Parry_13.png" id="15_o04tx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="Animation" id="Animation_wlj80"]
+resource_name = "parry"
+length = 0.63
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.045, 0.09, 0.135, 0.18, 0.225, 0.27, 0.315, 0.36, 0.405, 0.45, 0.495, 0.54, 0.585, 0.63),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_wlj80"), ExtResource("3_6bm8s"), ExtResource("4_hrerp"), ExtResource("5_oyld2"), ExtResource("6_vwsmr"), ExtResource("7_jcdrv"), ExtResource("8_hja65"), ExtResource("9_5shm8"), ExtResource("10_5efpn"), ExtResource("11_4uy46"), ExtResource("12_k60ra"), ExtResource("15_o04tx"), ExtResource("14_vwi60"), ExtResource("15_o04tx"), ExtResource("2_wlj80")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CharacterBody2D:_is_parrying")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.18, 0.36),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="Animation" id="Animation_6bm8s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:_is_parrying")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_wlj80")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hrerp"]
+_data = {
+&"RESET": SubResource("Animation_6bm8s"),
+&"parry": SubResource("Animation_wlj80")
+}
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("player_animations")]
 script = ExtResource("1_oul6g")
+_is_parrying = true
+player_animations = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_oul6g")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hrerp")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_wlj80")
