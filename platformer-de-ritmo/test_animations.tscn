@@ -447,7 +447,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("62_hhtlw")
 }],
-"loop": true,
+"loop": false,
 "name": &"Fall",
 "speed": 24.0
 }]
@@ -1044,33 +1044,33 @@ animations = [{
 [node name="PlayerAnimation" type="AnimationTree" parent="."]
 
 [node name="Walk" type="AnimatedSprite2D" parent="PlayerAnimation"]
-visible = false
 position = Vector2(111, -280)
 sprite_frames = SubResource("SpriteFrames_8wtpu")
 animation = &"Walk"
-frame_progress = 0.921475
+frame = 33
+frame_progress = 0.644216
 
 [node name="Counter" type="AnimatedSprite2D" parent="PlayerAnimation"]
 visible = false
 position = Vector2(-58, -251)
 sprite_frames = SubResource("SpriteFrames_j16yc")
 animation = &"Parry"
-frame_progress = 0.273391
+frame_progress = 0.258255
 
 [node name="Jump" type="AnimatedSprite2D" parent="PlayerAnimation"]
 visible = false
 position = Vector2(104, -284)
 sprite_frames = SubResource("SpriteFrames_j81gj")
 animation = &"Jump"
-frame = 6
-frame_progress = 0.818056
+frame_progress = 0.292719
 
 [node name="Fall" type="AnimatedSprite2D" parent="PlayerAnimation"]
 visible = false
-position = Vector2(114, -275)
+position = Vector2(100, -290)
 sprite_frames = SubResource("SpriteFrames_qm7yn")
 animation = &"Fall"
-frame_progress = 0.97595
+frame = 6
+frame_progress = 1.0
 
 [node name="AttackFast" type="AnimatedSprite2D" parent="PlayerAnimation"]
 visible = false
@@ -1096,11 +1096,11 @@ animation = &"AttackJump"
 frame_progress = 0.669404
 
 [node name="Idle" type="AnimatedSprite2D" parent="PlayerAnimation"]
-visible = false
-position = Vector2(65, -260)
+position = Vector2(95, -255)
 sprite_frames = SubResource("SpriteFrames_op2ev")
 animation = &"Idle"
-frame_progress = 0.327573
+frame = 21
+frame_progress = 0.873101
 
 [node name="BeastAnimation" type="AnimationTree" parent="."]
 root_node = NodePath("../AnimationPlayer")
