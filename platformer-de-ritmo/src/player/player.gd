@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 750.0
+const JUMP_VELOCITY = -1250.0
 const JUMP_BUFFER_TIME = 0.1
 const COYOTE_TIME = 0.1
 
@@ -10,7 +10,7 @@ var coyote_buffer
 
 @export var player_animations : AnimationPlayer
 @export var _is_parrying := false 
-@export var is_falling = false
+@export var _is_falling = false
 var is_moving
 var can_jump
 
@@ -24,7 +24,7 @@ func _process(_delta):
 	# If on floor, check if player just fell, is moving or is idling
 	if is_on_floor():
 		can_jump = true
-		if is_falling:
+		if _is_falling:
 			player_animations.play("fall")
 		else:
 			is_moving = Input.is_action_pressed("player_left") or Input.is_action_pressed("player_right")
@@ -34,7 +34,7 @@ func _process(_delta):
 				player_animations.play("idle")
 	# If not on floor, player is falling
 	else:
-		is_falling = true
+		_is_falling = true
 		if Input.is_action_just_pressed("player_jump") and can_jump:
 			player_animations.play("jump")
 			can_jump = false
@@ -70,11 +70,11 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("player_left", "player_right")
 	if direction:
 		if is_on_floor():
-			velocity.x = move_toward(velocity.x, direction * SPEED, 60)
+			velocity.x = move_toward(velocity.x, direction * SPEED, 150)
 		else:
-			velocity.x = move_toward(velocity.x, direction * SPEED, 30)
+			velocity.x = move_toward(velocity.x, direction * SPEED, 100)
 	else:
-		velocity.x = move_toward(velocity.x, 0, 45)
+		velocity.x = move_toward(velocity.x, 0, 75)
 
 	move_and_slide()
 	
