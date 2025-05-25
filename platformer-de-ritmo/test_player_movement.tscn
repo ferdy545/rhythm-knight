@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://biwx1p81c0qil"]
+[gd_scene load_steps=14 format=3 uid="uid://biwx1p81c0qil"]
 
 [ext_resource type="Script" uid="uid://c6o4fo6kfg2hg" path="res://test_player_movement.gd" id="1_tcanr"]
 [ext_resource type="PackedScene" uid="uid://ddrf1mul53nnd" path="res://src/player/player.tscn" id="2_2n3av"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dj8vnu5q6qa5t" path="res://assets/background/mountain_range.png" id="7_tf41q"]
 [ext_resource type="Texture2D" uid="uid://cwusbdfjsj3gh" path="res://assets/background/mountain.png" id="8_57666"]
 [ext_resource type="Texture2D" uid="uid://cmu0eucm2w0op" path="res://assets/background/small_mountains.png" id="9_vbr4w"]
+[ext_resource type="AudioStream" uid="uid://bxetk3l38odnn" path="res://assets/music/part1_game.wav" id="10_jwlqw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8uh7m"]
 size = Vector2(1150, 20)
@@ -108,3 +109,8 @@ motion_mirroring = Vector2(2880, 0)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer7"]
 texture = ExtResource("9_vbr4w")
 centered = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_jwlqw")
+autoplay = true
+bus = &"Music"
