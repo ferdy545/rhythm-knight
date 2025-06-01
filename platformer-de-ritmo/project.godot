@@ -14,6 +14,10 @@ config/name="Platformer de Ritmo"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SignalBus="*res://src/signal_bus/signal_bus.gd"
+
 [input]
 
 player_jump={
