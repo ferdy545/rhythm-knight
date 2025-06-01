@@ -15,6 +15,10 @@ run/main_scene="uid://biwx1p81c0qil"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SignalBus="*res://src/signal_bus/signal_bus.gd"
+
 [input]
 
 player_jump={
