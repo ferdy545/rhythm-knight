@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhgbket3pxnon"]
+[gd_scene load_steps=5 format=3 uid="uid://bhgbket3pxnon"]
 
 [ext_resource type="Script" uid="uid://rfvp11eym7vu" path="res://src/beat_system/rythm_cue.gd" id="1_cep4e"]
+[ext_resource type="AudioStream" uid="uid://bxetk3l38odnn" path="res://assets/music/part1_game.wav" id="2_525r0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_525r0"]
 bg_color = Color(0.499799, 0.581921, 0.88043, 1)
@@ -19,22 +20,26 @@ border_width_right = 3
 border_width_bottom = 3
 border_color = Color(1, 1, 1, 1)
 
-[node name="RythmCue" type="Node"]
+[node name="RythmCue" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_cep4e")
 
 [node name="IdlePiece" type="Panel" parent="."]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -222.0
-offset_top = -88.0
-offset_right = -182.0
-offset_bottom = -48.0
+offset_left = 850.0
+offset_top = -400.0
+offset_right = 890.0
+offset_bottom = -360.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.785398
+scale = Vector2(2, 2)
 pivot_offset = Vector2(20, 20)
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -59,21 +64,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_47l8c")
 
-[node name="Debug" type="Node" parent="."]
-
-[node name="DebugButton" type="Button" parent="Debug"]
-offset_left = 593.0
-offset_top = 173.0
-offset_right = 744.0
-offset_bottom = 327.0
-
-[node name="DebugChanceLabel" type="Label" parent="Debug"]
-offset_left = 517.0
-offset_top = 233.0
-offset_right = 557.0
-offset_bottom = 256.0
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[connection signal="pressed" from="Debug/DebugButton" to="." method="_on_debug_button_pressed"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_525r0")
+bus = &"Music"
