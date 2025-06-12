@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d17xkgnpbux8v"]
+
+[ext_resource type="Script" uid="uid://bjwi4a4u62r10" path="res://src/camera/camera.gd" id="1_bi5li"]
+[ext_resource type="Script" uid="uid://dfe6xrfsd4d87" path="res://src/signal_bus/signal_bus_receiver.gd" id="2_x21dn"]
+
+[node name="Camera" type="Camera2D"]
+script = ExtResource("1_bi5li")
+
+[node name="SignalBusReceiver" type="Node" parent="."]
+script = ExtResource("2_x21dn")
+metadata/_custom_type_script = "uid://dfe6xrfsd4d87"

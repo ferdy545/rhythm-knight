@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c743ak0icsd56"]
+
+[ext_resource type="Script" uid="uid://ctsv5pulv44l6" path="res://src/enemy/enemy.gd" id="1_ig63i"]
+[ext_resource type="Texture2D" uid="uid://j6442wknrfng" path="res://assets/cyber_beast/SpaceBeast2-Idle_00.png" id="2_xso4u"]
+[ext_resource type="Script" uid="uid://ci8ucrkmdeptg" path="res://src/signal_bus/signal_bus_sender.gd" id="3_xso4u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1xhc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ig63i"]
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("signal_bus_sender")]
+script = ExtResource("1_ig63i")
+signal_bus_sender = NodePath("SignalBusSender")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(9, 9)
+shape = SubResource("RectangleShape2D_t1xhc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_xso4u")
+
+[node name="SignalBusSender" type="Node" parent="."]
+script = ExtResource("3_xso4u")
+metadata/_custom_type_script = "uid://ci8ucrkmdeptg"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="EnemyArea" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(40, 40)
+shape = SubResource("CircleShape2D_ig63i")
+
+[connection signal="body_entered" from="Area2D" to="." method="on_body_entered_area"]
