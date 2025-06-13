@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsjo8et0etdou"]
+
+[ext_resource type="AudioStream" uid="uid://csc78johthmhe" path="res://assets/sfx/attack_good.wav" id="1_5hjp8"]
+[ext_resource type="AudioStream" uid="uid://c6ax1wjujqysp" path="res://assets/sfx/attack_wrong.wav" id="2_jbajk"]
+[ext_resource type="AudioStream" uid="uid://bkyyowbucnyyx" path="res://assets/sfx/attack_miss.wav" id="3_amr5w"]
+[ext_resource type="AudioStream" uid="uid://ic57v0gwqbbo" path="res://assets/sfx/attack_cyber_beast.wav" id="4_amr5w"]
+
+[node name="Soundfx" type="Node"]
+
+[node name="AttackGood" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_5hjp8")
+volume_db = -2.5
+
+[node name="AttackWrong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_jbajk")
+
+[node name="AttackMiss" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_amr5w")
+volume_db = -5.0
+
+[node name="AttackCyberBeast" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_amr5w")
+volume_db = -2.0
