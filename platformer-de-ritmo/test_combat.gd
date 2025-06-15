@@ -19,13 +19,6 @@ var rhythms_list = [
 	["rhythm6", 4], ["rhythm7", 3], ["rhythm8", 3], ["rhythm9", 4], ["rhythm10", 6]
 ]
 
-#@onready var attacks = {
-#	"player_attack_up": ["up_arrow", "jump_attack"],
-#	"player_attack_down": ["down_arrow", "parry"],
-#	"player_attack_left": ["left_arrow", "block_attack"],
-#	"player_attack_right": ["right_arrow", "basic_attack"]
-#}
-
 var in_show_sequence = false
 var in_combat_mode = false
 var attempted = false
