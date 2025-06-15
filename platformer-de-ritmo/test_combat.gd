@@ -56,10 +56,10 @@ func _process(_delta: float) -> void:
 		song_beat.play("song_beat")
 	
 	# Wait for beat to show the sequence
-	if _beat and in_show_sequence and not rhythms.is_playing():
-		# (rhythm[0] contains the rhythm itself)
-		rhythms.play(rhythm[0])
+	if _beat:
 		_beat = false
+		if in_show_sequence and not rhythms.is_playing():
+			rhythms.play(rhythm[0]) # rhythm[0] contains the rhythm itself
 
 	show_sequence()
 	start_combat()
@@ -83,8 +83,8 @@ func _on_player_entered_area(enemy) -> void:
 		
 
 func show_sequence():
-	# Keep showing the sequence until it reaches the last element (rhythm[1] contains number of beats)
-	if in_show_sequence and current_beat < rhythm[1]:
+	# Keep showing the sequence until it reaches the last element
+	if in_show_sequence and current_beat < rhythm[1]: # rhythm[1] contains number of beats
 		attack = atk_sequence[current_beat]
 		change_sprite(attacks[attack]) 
 		arrow_sprite.visible = true
@@ -119,12 +119,11 @@ func show_sequence():
 	
 
 func start_combat():
-	# Keep showing the sequence until it reaches the last element (rhythm[1] contains number of beats)
-	if in_combat_mode and current_beat < rhythm[1]:
+	# Keep showing the sequence until it reaches the last element
+	if in_combat_mode and current_beat < rhythm[1]: # rhythm[1] contains number of beats
 		# Waits until the first time the rhythm was played (i.e. to show the sequence) finishes
 		if not rhythms.is_playing():
-			# (rhythm[0] contains the rhythm itself)
-			rhythms.play(rhythm[0])
+			rhythms.play(rhythm[0]) # rhythm[0] contains the rhythm itself
 			
 		attack = atk_sequence[current_beat]
 		arrow_sprite.visible = true
