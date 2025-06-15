@@ -2,12 +2,12 @@ extends CharacterBody2D
 class_name Player
 
 @export var life = 10
-@onready var combat = $".."
 
 const SPEED = 750.0
 const JUMP_VELOCITY = -1250.0
 const JUMP_BUFFER_TIME = 0.1
 const COYOTE_TIME = 0.1
+const PLAYER_GROUP = &"PLAYER"
 
 var jump_buffer
 var coyote_buffer
@@ -19,13 +19,17 @@ var coyote_buffer
 @export var _is_falling := false
 var is_moving
 var can_jump
+var is_in_combat: bool
 
+
+func _init() -> void:
+	add_to_group(PLAYER_GROUP)
 
 # Process animations
 func _process(_delta):
 	var direction := Input.get_axis("player_left", "player_right")
 	# If player is moving, flip sprites according to its direction
-	if direction != 0 and not combat._lock_player:
+	if direction != 0 and not is_in_combat:
 		$Sprite2D.flip_h = direction > 0
 	if not _is_attacking:		
 		# If on floor, check if player just fell, is moving or is idling
@@ -35,14 +39,14 @@ func _process(_delta):
 				player_animations.play("fall")
 			else:
 				is_moving = Input.is_action_pressed("player_left") or Input.is_action_pressed("player_right")
-				if is_moving and velocity.x != 0 and not combat._lock_player:
+				if is_moving and velocity.x != 0 and not is_in_combat:
 					player_animations.play("walk")
 				else:
 					player_animations.play("idle")
 		# If not on floor, player is falling
 		else:
 			_is_falling = true
-			if Input.is_action_just_pressed("player_jump") and can_jump and not combat._lock_player:
+			if Input.is_action_just_pressed("player_jump") and can_jump and not is_in_combat:
 				player_animations.play("jump")
 				can_jump = false
 		
@@ -69,7 +73,7 @@ func _physics_process(delta: float) -> void:
 		coyote_buffer = true
 	
 	# Lock player's movement if in combat mode
-	if not combat._lock_player:
+	if not is_in_combat:
 		# Handle jump
 		if Input.is_action_just_pressed("player_jump"):
 			# If on floor, jump normally
@@ -111,3 +115,7 @@ func coyote_timeout() -> void:
 
 func parry():
 	player_animations.play("parry")
+
+
+static func get_player(scene_tree: SceneTree):
+	return scene_tree.get_first_node_in_group(PLAYER_GROUP)
