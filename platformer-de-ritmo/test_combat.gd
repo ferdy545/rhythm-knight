@@ -5,14 +5,14 @@ extends Node2D
 @onready var atk_wrong = $Soundfx/AttackWrong
 @onready var atk_miss = $Soundfx/AttackMiss
 @onready var atk_cyberbeast = $Soundfx/AttackCyberBeast
-@onready var player = $CharacterBody2D
 @onready var arrow_sprite = $Camera/Arrow
 @onready var song_beat : AnimationPlayer = $SongBeat
 @onready var rhythms : AnimationPlayer = $Rhythms
 
-@export var _lock_player = false
 @export var _beat = false
 @export var _rhythm = false
+
+var player: Player
 
 var rhythms_list = [
 	["rhythm1", 4], ["rhythm2", 4], ["rhythm3", 5], ["rhythm4", 6], ["rhythm5", 5],
@@ -36,6 +36,10 @@ var current_beat = -1
 var attack
 var rhythm
 	
+
+func _ready() -> void:
+	player = Player.get_player(get_tree())	
+
 
 func _process(_delta: float) -> void:
 	$Camera/TestLifeLabel.text = str(player.life)
@@ -63,7 +67,7 @@ func _process(_delta: float) -> void:
 
 func _on_player_entered_area(enemy) -> void:
 	# Preparation to start combat mode, starting with showing the sequence
-	_lock_player = true
+	player.is_in_combat = true
 	current_beat = -1
 	Camera.target_object(enemy)
 	in_show_sequence = true
@@ -173,7 +177,7 @@ func start_combat():
 	
 	
 func exit_combat():
-	_lock_player = false
+	player.is_in_combat = false
 	current_beat = -1
 	Camera.target_object(player)
 
