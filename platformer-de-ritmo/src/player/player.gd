@@ -21,6 +21,14 @@ var is_moving
 var can_jump
 var is_in_combat: bool
 
+var attacks_dict = {
+	"player_attack_up": ["up_arrow", "jump_attack"],
+	"player_attack_down": ["down_arrow", "parry"],
+	"player_attack_left": ["left_arrow", "block_attack"],
+	"player_attack_right": ["right_arrow", "basic_attack"]
+  # "input key": ["arrow sprite", "animation"]
+}
+
 
 func _init() -> void:
 	add_to_group(PLAYER_GROUP)
