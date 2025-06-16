@@ -48,8 +48,12 @@ func on_body_entered_area(body: Node2D) -> void:
 
 
 func _on_enemy_attack(enemy) -> void:
-	_is_attacking = true	
+	if enemy != self:
+		return
+	_is_attacking = true
 
 
 func _on_enemy_was_killed(enemy) -> void:
+	if enemy != self:
+		return
 	_enemy_was_killed = true

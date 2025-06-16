@@ -9,6 +9,7 @@ extends Node2D
 @onready var song_beat : AnimationPlayer = $SongBeat
 @onready var rhythms : AnimationPlayer = $Rhythms
 @onready var signal_bus_sender : SignalBusSender = $SignalBusSender
+@onready var player_sprite : Sprite2D = $CharacterBody2D/Sprite2D
 
 @export var _beat = false
 @export var _rhythm = false
@@ -62,10 +63,25 @@ func _on_player_entered_area(enemy) -> void:
 	# Preparation to start combat mode, starting with showing the sequence
 	player.is_in_combat = true
 	enemy.is_in_combat = true
+	self.enemy = enemy
 	current_beat = -1
 	Camera.target_object(enemy)
 	in_show_sequence = true
 	
+	var enemy_sprite = enemy.get_node("Sprite2D")
+	
+	# Make player and enemy face each other when in combat	
+	if player.global_position.x < enemy.global_position.x:
+		if player_sprite.flip_h == false:
+			player_sprite.flip_h = true
+		if enemy_sprite.flip_h == false:
+			enemy_sprite.flip_h = true
+	else:
+		if player_sprite.flip_h == true:
+			player_sprite.flip_h = false
+		if enemy_sprite.flip_h == true:
+			enemy_sprite.flip_h = false
+			
 	# Pick a random rhythm
 	rhythm = rhythms_list.pick_random()
 	
