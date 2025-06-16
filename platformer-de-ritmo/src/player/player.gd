@@ -35,37 +35,50 @@ func _init() -> void:
 
 # Process animations
 func _process(_delta):
-	var direction := Input.get_axis("player_left", "player_right")
-	# If player is moving, flip sprites according to its direction
-	if direction != 0 and not is_in_combat:
-		$Sprite2D.flip_h = direction > 0
-	if not _is_attacking:		
-		# If on floor, check if player just fell, is moving or is idling
-		if is_on_floor():
-			can_jump = true
-			if _is_falling:
-				player_animations.play("fall")
-			else:
-				is_moving = Input.is_action_pressed("player_left") or Input.is_action_pressed("player_right")
-				if is_moving and velocity.x != 0 and not is_in_combat:
-					player_animations.play("walk")
+	# If player is not in combat
+	if not is_in_combat:
+		var direction := Input.get_axis("player_left", "player_right")
+		# If player is moving, flip sprites according to its direction
+		if direction != 0:
+			$Sprite2D.flip_h = direction > 0
+		if not _is_attacking:		
+			# If on floor, check if player just fell, is moving or is idling
+			if is_on_floor():
+				can_jump = true
+				if _is_falling:
+					player_animations.play("fall")
 				else:
-					player_animations.play("idle")
-		# If not on floor, player is falling
+					is_moving = Input.is_action_pressed("player_left") or Input.is_action_pressed("player_right")
+					if is_moving and velocity.x != 0:
+						player_animations.play("walk")
+					else:
+						player_animations.play("idle")
+			# If not on floor, player is falling
+			else:
+				_is_falling = true
+				if Input.is_action_just_pressed("player_jump") and can_jump:
+					player_animations.play("jump")
+					can_jump = false
+			
+			# Attacks
+			if Input.is_action_just_pressed("player_parry"):
+				player_animations.play("parry")
+				
 		else:
-			_is_falling = true
-			if Input.is_action_just_pressed("player_jump") and can_jump and not is_in_combat:
-				player_animations.play("jump")
-				can_jump = false
-		
-		# Attacks
-		if Input.is_action_just_pressed("player_parry"):
-			player_animations.play("parry")
-			
+			if Input.is_action_just_pressed("player_parry"):
+				player_animations.play("parry")
+	
+	# If player is in combat, manage attack animations		
 	else:
-		if Input.is_action_just_pressed("player_parry"):
+		if Input.is_action_just_pressed("player_attack_up"):
+			player_animations.play("jump_attack")
+		elif Input.is_action_just_pressed("player_attack_down"):
 			player_animations.play("parry")
-			
+		elif Input.is_action_just_pressed("player_attack_left"):
+			player_animations.play("block_attack")
+		elif Input.is_action_just_pressed("player_attack_right"):
+			player_animations.play("basic_attack")
+
 
 # Process physics
 func _physics_process(delta: float) -> void:
