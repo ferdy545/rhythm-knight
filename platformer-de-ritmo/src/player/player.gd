@@ -43,6 +43,7 @@ func _process(_delta):
 		player_animations.play("death")
 		if _fisished_dying:
 			get_tree().change_scene_to_file("res://test_death.tscn")
+			
 	# If player life is more than zero:	
 	else:
 		# If player is not in combat
