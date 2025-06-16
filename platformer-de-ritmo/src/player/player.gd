@@ -14,6 +14,7 @@ var coyote_buffer
 
 @export var enemy : Script
 @export var player_animations : AnimationPlayer
+@export var _is_getting_damaged := false
 @export var _is_attacking := false
 @export var _is_parrying := false 
 @export var _is_falling := false
@@ -74,14 +75,19 @@ func _process(_delta):
 	
 	# If player is in combat, manage attack animations		
 	else:
-		if Input.is_action_just_pressed("player_attack_up"):
-			player_animations.play("jump_attack")
-		elif Input.is_action_just_pressed("player_attack_down"):
-			player_animations.play("parry")
-		elif Input.is_action_just_pressed("player_attack_left"):
-			player_animations.play("block_attack")
-		elif Input.is_action_just_pressed("player_attack_right"):
-			player_animations.play("basic_attack")
+		if not _is_getting_damaged:
+			if Input.is_action_just_pressed("player_attack_up"):
+				player_animations.play("jump_attack")
+			elif Input.is_action_just_pressed("player_attack_down"):
+				player_animations.play("parry")
+			elif Input.is_action_just_pressed("player_attack_left"):
+				player_animations.play("block_attack")
+			elif Input.is_action_just_pressed("player_attack_right"):
+				player_animations.play("basic_attack")
+			elif not _is_attacking:
+				player_animations.play("idle")
+		else:
+			player_animations.play("damaged")
 
 
 # Process physics
@@ -143,7 +149,9 @@ func parry():
 	
 	
 func _on_player_was_damaged() -> void:
+	_is_getting_damaged = true
 	life -= 1;
+	player_animations.stop()
 
 
 static func get_player(scene_tree: SceneTree):
