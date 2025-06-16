@@ -14,6 +14,7 @@ extends Node2D
 @export var _rhythm = false
 
 var player: Player
+var enemy: Enemy
 
 var rhythms_list = [
 	["rhythm1", 4], ["rhythm2", 4], ["rhythm3", 5], ["rhythm4", 6], ["rhythm5", 5],
@@ -60,6 +61,7 @@ func _process(_delta: float) -> void:
 func _on_player_entered_area(enemy) -> void:
 	# Preparation to start combat mode, starting with showing the sequence
 	player.is_in_combat = true
+	enemy.is_in_combat = true
 	current_beat = -1
 	Camera.target_object(enemy)
 	in_show_sequence = true
@@ -122,6 +124,7 @@ func start_combat():
 		
 		# If within beat interval
 		if _rhythm:
+			enemy_attack()
 			# If already attempted current beat, skip key input verification
 			if attempted:
 				return
@@ -162,6 +165,7 @@ func start_combat():
 		if killed_enemy:
 			if current_beat != -1 and not in_show_sequence:
 				in_combat_mode = false
+				enemy_killed()
 				exit_combat()
 		else:
 			reshow_sequence()
@@ -190,3 +194,11 @@ func change_sprite(arrow):
 
 func player_was_damaged():
 	signal_bus_sender.send_player_was_damaged()
+	
+
+func enemy_attack():
+	signal_bus_sender.send_enemy_attack(enemy)
+	
+	
+func enemy_killed():
+	signal_bus_sender.send_enemy_was_killed(enemy)

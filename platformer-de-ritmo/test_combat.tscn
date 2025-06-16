@@ -328,9 +328,10 @@ texture = ExtResource("8_lueld")
 centered = false
 
 [node name="Enemy1" parent="." instance=ExtResource("10_sqhin")]
+position = Vector2(-142, 868)
 
 [node name="Enemy2" parent="." instance=ExtResource("10_sqhin")]
-position = Vector2(-1792, -7)
+position = Vector2(-1208, 861)
 
 [node name="SignalBusSender" type="Node" parent="."]
 script = ExtResource("11_jtosv")
