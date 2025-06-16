@@ -1,4 +1,4 @@
-[gd_scene load_steps=226 format=3 uid="uid://ddrf1mul53nnd"]
+[gd_scene load_steps=227 format=3 uid="uid://ddrf1mul53nnd"]
 
 [ext_resource type="Script" uid="uid://bfolytv3xv7qt" path="res://src/player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://bl80lkedl58re" path="res://assets/player/player_animations/Parry_00.png" id="2_wlj80"]
@@ -211,6 +211,7 @@
 [ext_resource type="Texture2D" uid="uid://5eao756eeovu" path="res://assets/player/player_animations/counter_09.png" id="209_vrob5"]
 [ext_resource type="Texture2D" uid="uid://b4w57wyx3osaw" path="res://assets/player/player_animations/counter_10.png" id="210_jn43d"]
 [ext_resource type="Texture2D" uid="uid://dnfgtn5xtp8my" path="res://assets/player/player_animations/counter_11.png" id="211_u85t2"]
+[ext_resource type="Script" uid="uid://dfe6xrfsd4d87" path="res://src/signal_bus/signal_bus_receiver.gd" id="212_f7hl8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 
@@ -632,3 +633,9 @@ libraries = {
 scale = Vector2(0.33, 0.33)
 texture = ExtResource("53_n7jib")
 flip_h = true
+
+[node name="SignalBusReceiver" type="Node" parent="."]
+script = ExtResource("212_f7hl8")
+metadata/_custom_type_script = "uid://dfe6xrfsd4d87"
+
+[connection signal="player_was_damaged" from="SignalBusReceiver" to="." method="_on_player_was_damaged"]

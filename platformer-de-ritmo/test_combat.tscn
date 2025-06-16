@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bxxvke7w2ehbv"]
+[gd_scene load_steps=35 format=3 uid="uid://bxxvke7w2ehbv"]
 
 [ext_resource type="PackedScene" uid="uid://ddrf1mul53nnd" path="res://src/player/player.tscn" id="1_1avsg"]
 [ext_resource type="Script" uid="uid://kwq2scek371a" path="res://test_combat.gd" id="1_sqhin"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cwusbdfjsj3gh" path="res://assets/background/mountain.png" id="7_8rlkd"]
 [ext_resource type="Texture2D" uid="uid://cmu0eucm2w0op" path="res://assets/background/small_mountains.png" id="8_lueld"]
 [ext_resource type="PackedScene" uid="uid://c743ak0icsd56" path="res://src/enemy/enemy.tscn" id="10_sqhin"]
+[ext_resource type="Script" uid="uid://ci8ucrkmdeptg" path="res://src/signal_bus/signal_bus_sender.gd" id="11_jtosv"]
 [ext_resource type="Script" uid="uid://dfe6xrfsd4d87" path="res://src/signal_bus/signal_bus_receiver.gd" id="11_llp3u"]
 [ext_resource type="PackedScene" uid="uid://dsjo8et0etdou" path="res://src/soundfx/soundfx.tscn" id="12_8rlkd"]
 [ext_resource type="AudioStream" uid="uid://bxetk3l38odnn" path="res://assets/music/part1_game.wav" id="12_tpf0o"]
@@ -330,6 +331,10 @@ centered = false
 
 [node name="Enemy2" parent="." instance=ExtResource("10_sqhin")]
 position = Vector2(-1792, -7)
+
+[node name="SignalBusSender" type="Node" parent="."]
+script = ExtResource("11_jtosv")
+metadata/_custom_type_script = "uid://ci8ucrkmdeptg"
 
 [node name="SignalBusReceiver" type="Node" parent="."]
 script = ExtResource("11_llp3u")

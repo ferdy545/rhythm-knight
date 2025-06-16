@@ -33,8 +33,12 @@ var attacks_dict = {
 func _init() -> void:
 	add_to_group(PLAYER_GROUP)
 
+
 # Process animations
 func _process(_delta):
+	if life <= 0:
+		get_tree().change_scene_to_file("res://test_death.tscn")
+		
 	# If player is not in combat
 	if not is_in_combat:
 		var direction := Input.get_axis("player_left", "player_right")
@@ -136,6 +140,10 @@ func coyote_timeout() -> void:
 
 func parry():
 	player_animations.play("parry")
+	
+	
+func _on_player_was_damaged() -> void:
+	life -= 1;
 
 
 static func get_player(scene_tree: SceneTree):

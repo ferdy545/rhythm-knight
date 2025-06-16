@@ -8,6 +8,7 @@ extends Node2D
 @onready var arrow_sprite = $Camera/Arrow
 @onready var song_beat : AnimationPlayer = $SongBeat
 @onready var rhythms : AnimationPlayer = $Rhythms
+@onready var signal_bus_sender : SignalBusSender = $SignalBusSender
 
 @export var _beat = false
 @export var _rhythm = false
@@ -36,9 +37,6 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	$Camera/TestLifeLabel.text = str(player.life)
-	
-	if player.life <= 0:
-		get_tree().change_scene_to_file("res://test_death.tscn")
 		
 	# Start music a bit earlier to sync it with the rhythms (music is 24s long)
 	if not music.playing:
@@ -134,7 +132,7 @@ func start_combat():
 			# If pressed wrong key
 			elif Input.is_action_just_pressed("player_attack_up") or Input.is_action_just_pressed("player_attack_down") or Input.is_action_just_pressed("player_attack_left") or Input.is_action_just_pressed("player_attack_right"):
 				atk_wrong.play()
-				player.life -= 1
+				player_was_damaged()
 				killed_enemy = false
 				attempted = true
 			
@@ -149,7 +147,7 @@ func start_combat():
 			# If player did not attack during beat interval
 			if not attempted and beat_start:
 				atk_miss.play()	
-				player.life -= 1
+				player_was_damaged()
 				killed_enemy = false
 			if current_beat == rhythm[1] - 1:
 				current_beat += 1	
@@ -173,6 +171,7 @@ func exit_combat():
 	current_beat = -1
 	Camera.target_object(player)
 
+
 func reshow_sequence():
 	# At the start of every sequence, assume player has defeated enemy.
 	# If player misses a beat, then killed_enemy = false 
@@ -186,3 +185,7 @@ func change_sprite(arrow):
 	# Update the arrow sprite texture according to the attack sequence
 	var texture = load('res://assets/rhythm_arrows/%s.png' %[arrow])
 	arrow_sprite.texture = texture
+
+
+func player_was_damaged():
+	signal_bus_sender.send_player_was_damaged()

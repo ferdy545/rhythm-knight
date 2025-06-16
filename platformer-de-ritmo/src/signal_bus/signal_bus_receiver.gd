@@ -5,6 +5,7 @@ const GROUP := "RECEIVER"
 static var receivers : Array[SignalBusReceiver]
 
 signal player_entered_area
+signal player_was_damaged
 
 
 func _enter_tree() -> void:
