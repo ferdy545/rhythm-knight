@@ -52,8 +52,9 @@ func _process(_delta: float) -> void:
 		if in_show_sequence and not rhythms.is_playing():
 			rhythms.play(rhythm[0]) # rhythm[0] contains the rhythm itself
 
-	show_sequence()
-	start_combat()
+	if player.life > 0:
+		show_sequence()
+		start_combat()
 
 
 func _on_player_entered_area(enemy) -> void:

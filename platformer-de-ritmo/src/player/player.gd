@@ -14,6 +14,7 @@ var coyote_buffer
 
 @export var enemy : Script
 @export var player_animations : AnimationPlayer
+@export var _fisished_dying := false
 @export var _is_getting_damaged := false
 @export var _is_attacking := false
 @export var _is_parrying := false 
@@ -37,57 +38,61 @@ func _init() -> void:
 
 # Process animations
 func _process(_delta):
+	# Handle player death
 	if life <= 0:
-		get_tree().change_scene_to_file("res://test_death.tscn")
-		
-	# If player is not in combat
-	if not is_in_combat:
-		var direction := Input.get_axis("player_left", "player_right")
-		# If player is moving, flip sprites according to its direction
-		if direction != 0:
-			$Sprite2D.flip_h = direction > 0
-		if not _is_attacking:		
-			# If on floor, check if player just fell, is moving or is idling
-			if is_on_floor():
-				can_jump = true
-				if _is_falling:
-					player_animations.play("fall")
-				else:
-					is_moving = Input.is_action_pressed("player_left") or Input.is_action_pressed("player_right")
-					if is_moving and velocity.x != 0:
-						player_animations.play("walk")
-					else:
-						player_animations.play("idle")
-			# If not on floor, player is falling
-			else:
-				_is_falling = true
-				if Input.is_action_just_pressed("player_jump") and can_jump:
-					player_animations.play("jump")
-					can_jump = false
-			
-			# Attacks
-			if Input.is_action_just_pressed("player_parry"):
-				player_animations.play("parry")
-				
-		else:
-			if Input.is_action_just_pressed("player_parry"):
-				player_animations.play("parry")
-	
-	# If player is in combat, manage attack animations		
+		player_animations.play("death")
+		if _fisished_dying:
+			get_tree().change_scene_to_file("res://test_death.tscn")
+	# If player life is more than zero:	
 	else:
-		if not _is_getting_damaged:
-			if Input.is_action_just_pressed("player_attack_up"):
-				player_animations.play("jump_attack")
-			elif Input.is_action_just_pressed("player_attack_down"):
-				player_animations.play("parry")
-			elif Input.is_action_just_pressed("player_attack_left"):
-				player_animations.play("block_attack")
-			elif Input.is_action_just_pressed("player_attack_right"):
-				player_animations.play("basic_attack")
-			elif not _is_attacking:
-				player_animations.play("idle")
+		# If player is not in combat
+		if not is_in_combat:
+			var direction := Input.get_axis("player_left", "player_right")
+			# If player is moving, flip sprites according to its direction
+			if direction != 0:
+				$Sprite2D.flip_h = direction > 0
+			if not _is_attacking:		
+				# If on floor, check if player just fell, is moving or is idling
+				if is_on_floor():
+					can_jump = true
+					if _is_falling:
+						player_animations.play("fall")
+					else:
+						is_moving = Input.is_action_pressed("player_left") or Input.is_action_pressed("player_right")
+						if is_moving and velocity.x != 0:
+							player_animations.play("walk")
+						else:
+							player_animations.play("idle")
+				# If not on floor, player is falling
+				else:
+					_is_falling = true
+					if Input.is_action_just_pressed("player_jump") and can_jump:
+						player_animations.play("jump")
+						can_jump = false
+				
+				# Attacks
+				if Input.is_action_just_pressed("player_parry"):
+					player_animations.play("parry")
+					
+			else:
+				if Input.is_action_just_pressed("player_parry"):
+					player_animations.play("parry")
+		
+		# If player is in combat, manage attack animations		
 		else:
-			player_animations.play("damaged")
+			if not _is_getting_damaged:
+				if Input.is_action_just_pressed("player_attack_up"):
+					player_animations.play("jump_attack")
+				elif Input.is_action_just_pressed("player_attack_down"):
+					player_animations.play("parry")
+				elif Input.is_action_just_pressed("player_attack_left"):
+					player_animations.play("block_attack")
+				elif Input.is_action_just_pressed("player_attack_right"):
+					player_animations.play("basic_attack")
+				elif not _is_attacking:
+					player_animations.play("idle")
+			else:
+				player_animations.play("damaged")
 
 
 # Process physics
