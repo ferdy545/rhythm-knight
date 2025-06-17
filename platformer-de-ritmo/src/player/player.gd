@@ -14,6 +14,8 @@ var coyote_buffer
 
 @export var enemy : Script
 @export var player_animations : AnimationPlayer
+@export var _fisished_dying := false
+@export var _is_getting_damaged := false
 @export var _is_attacking := false
 @export var _is_parrying := false 
 @export var _is_falling := false
@@ -21,43 +23,78 @@ var is_moving
 var can_jump
 var is_in_combat: bool
 
+var attacks_dict = {
+	"player_attack_up": ["up_arrow", "jump_attack"],
+	"player_attack_down": ["down_arrow", "parry"],
+	"player_attack_left": ["left_arrow", "block_attack"],
+	"player_attack_right": ["right_arrow", "basic_attack"]
+  # "input key": ["arrow sprite", "animation"]
+}
+
 
 func _init() -> void:
 	add_to_group(PLAYER_GROUP)
 
+
 # Process animations
 func _process(_delta):
-	var direction := Input.get_axis("player_left", "player_right")
-	# If player is moving, flip sprites according to its direction
-	if direction != 0 and not is_in_combat:
-		$Sprite2D.flip_h = direction > 0
-	if not _is_attacking:		
-		# If on floor, check if player just fell, is moving or is idling
-		if is_on_floor():
-			can_jump = true
-			if _is_falling:
-				player_animations.play("fall")
-			else:
-				is_moving = Input.is_action_pressed("player_left") or Input.is_action_pressed("player_right")
-				if is_moving and velocity.x != 0 and not is_in_combat:
-					player_animations.play("walk")
-				else:
-					player_animations.play("idle")
-		# If not on floor, player is falling
-		else:
-			_is_falling = true
-			if Input.is_action_just_pressed("player_jump") and can_jump and not is_in_combat:
-				player_animations.play("jump")
-				can_jump = false
-		
-		# Attacks
-		if Input.is_action_just_pressed("player_parry"):
-			player_animations.play("parry")
+	# Handle player death
+	if life <= 0:
+		player_animations.play("death")
+		if _fisished_dying:
+			get_tree().change_scene_to_file("res://test_death.tscn")
 			
+	# If player life is more than zero:	
 	else:
-		if Input.is_action_just_pressed("player_parry"):
-			player_animations.play("parry")
-			
+		# If player is not in combat
+		if not is_in_combat:
+			var direction := Input.get_axis("player_left", "player_right")
+			# If player is moving, flip sprites according to its direction
+			if direction != 0:
+				$Sprite2D.scale.x = abs($Sprite2D.scale.x) if direction > 0 else -abs($Sprite2D.scale.x)
+			if not _is_attacking:		
+				# If on floor, check if player just fell, is moving or is idling
+				if is_on_floor():
+					can_jump = true
+					if _is_falling:
+						player_animations.play("fall")
+					else:
+						is_moving = Input.is_action_pressed("player_left") or Input.is_action_pressed("player_right")
+						if is_moving and velocity.x != 0:
+							player_animations.play("walk")
+						else:
+							player_animations.play("idle")
+				# If not on floor, player is falling
+				else:
+					_is_falling = true
+					if Input.is_action_just_pressed("player_jump") and can_jump:
+						player_animations.play("jump")
+						can_jump = false
+				
+				# Attacks
+				if Input.is_action_just_pressed("player_parry"):
+					player_animations.play("parry")
+					
+			else:
+				if Input.is_action_just_pressed("player_parry"):
+					player_animations.play("parry")
+		
+		# If player is in combat, manage attack animations		
+		else:
+			if not _is_getting_damaged:
+				if Input.is_action_just_pressed("player_attack_up"):
+					player_animations.play("jump_attack")
+				elif Input.is_action_just_pressed("player_attack_down"):
+					player_animations.play("parry")
+				elif Input.is_action_just_pressed("player_attack_left"):
+					player_animations.play("block_attack")
+				elif Input.is_action_just_pressed("player_attack_right"):
+					player_animations.play("basic_attack")
+				elif not _is_attacking:
+					player_animations.play("idle")
+			else:
+				player_animations.play("damaged")
+
 
 # Process physics
 func _physics_process(delta: float) -> void:
@@ -115,6 +152,12 @@ func coyote_timeout() -> void:
 
 func parry():
 	player_animations.play("parry")
+	
+	
+func _on_player_was_damaged() -> void:
+	_is_getting_damaged = true
+	life -= 1;
+	player_animations.stop()
 
 
 static func get_player(scene_tree: SceneTree):
