@@ -157,6 +157,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(58, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_eu3nm"]
 resource_name = "death"
@@ -196,6 +208,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-271, -86)]
+}
 
 [sub_resource type="Animation" id="Animation_jrm3q"]
 resource_name = "detect"
@@ -211,6 +235,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("63_a7x14"), ExtResource("64_0lk05"), ExtResource("65_xud0g"), ExtResource("66_u0soo"), ExtResource("67_yexmc"), ExtResource("68_fgyhm"), ExtResource("69_bk3ln"), ExtResource("68_fgyhm"), ExtResource("67_yexmc"), ExtResource("66_u0soo"), ExtResource("65_xud0g"), ExtResource("64_0lk05")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 17)]
 }
 
 [sub_resource type="Animation" id="Animation_2xfcl"]
@@ -228,6 +264,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("2_xso4u"), ExtResource("3_8ll7q"), ExtResource("4_wbg6b"), ExtResource("5_hv5mm"), ExtResource("6_vhwh3"), ExtResource("7_k4b4d"), ExtResource("8_owr6e"), ExtResource("9_6p41n"), ExtResource("10_wqdkh"), ExtResource("11_vxfbv"), ExtResource("12_v0n0q"), ExtResource("13_gamlm"), ExtResource("14_sskh4"), ExtResource("15_0p0vy")]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-33, 8)]
+}
 
 [sub_resource type="Animation" id="Animation_savfk"]
 resource_name = "waiting"
@@ -243,6 +291,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("70_7iswg"), ExtResource("71_pyn0l"), ExtResource("72_cvx5m"), ExtResource("73_ollil"), ExtResource("74_e1iye"), ExtResource("75_s07ny"), ExtResource("76_i87gl"), ExtResource("77_s5eva"), ExtResource("78_7c1ag"), ExtResource("79_2rm4p"), ExtResource("80_3ngs6"), ExtResource("81_y4iqt"), ExtResource("82_6w3nd"), ExtResource("83_q4qk4"), ExtResource("84_66rcq"), ExtResource("85_h1fum"), ExtResource("86_ad5t3")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-9, -11)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dxvf2"]
@@ -273,7 +333,8 @@ libraries = {
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.35, 0.35)
-texture = ExtResource("43_qu381")
+texture = ExtResource("70_7iswg")
+offset = Vector2(-9, -11)
 
 [node name="SignalBusReceiver" type="Node" parent="."]
 script = ExtResource("87_wbg6b")

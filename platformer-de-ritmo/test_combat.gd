@@ -72,16 +72,12 @@ func _on_player_entered_area(enemy) -> void:
 	
 	# Make player and enemy face each other when in combat	
 	if player.global_position.x < enemy.global_position.x:
-		if player_sprite.flip_h == false:
-			player_sprite.flip_h = true
-		if enemy_sprite.flip_h == false:
-			enemy_sprite.flip_h = true
+		player_sprite.scale.x = abs(player_sprite.scale.x)
+		enemy_sprite.scale.x = -abs(enemy_sprite.scale.x)
 	else:
-		if player_sprite.flip_h == true:
-			player_sprite.flip_h = false
-		if enemy_sprite.flip_h == true:
-			enemy_sprite.flip_h = false
-			
+		player_sprite.scale.x = -abs(player_sprite.scale.x)
+		enemy_sprite.scale.x = abs(enemy_sprite.scale.x)
+		
 	# Pick a random rhythm
 	rhythm = rhythms_list.pick_random()
 	

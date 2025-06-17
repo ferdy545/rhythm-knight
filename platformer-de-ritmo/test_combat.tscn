@@ -267,7 +267,7 @@ position = Vector2(437.813, 1151.81)
 shape = SubResource("RectangleShape2D_2e6ak")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_1avsg")]
-position = Vector2(-682, 1123)
+position = Vector2(451, 775)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -328,10 +328,10 @@ texture = ExtResource("8_lueld")
 centered = false
 
 [node name="Enemy1" parent="." instance=ExtResource("10_sqhin")]
-position = Vector2(-142, 868)
+position = Vector2(1145, 837)
 
 [node name="Enemy2" parent="." instance=ExtResource("10_sqhin")]
-position = Vector2(-1208, 861)
+position = Vector2(-207, 826)
 
 [node name="SignalBusSender" type="Node" parent="."]
 script = ExtResource("11_jtosv")

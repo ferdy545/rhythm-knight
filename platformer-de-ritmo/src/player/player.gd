@@ -51,7 +51,7 @@ func _process(_delta):
 			var direction := Input.get_axis("player_left", "player_right")
 			# If player is moving, flip sprites according to its direction
 			if direction != 0:
-				$Sprite2D.flip_h = direction > 0
+				$Sprite2D.scale.x = abs($Sprite2D.scale.x) if direction > 0 else -abs($Sprite2D.scale.x)
 			if not _is_attacking:		
 				# If on floor, check if player just fell, is moving or is idling
 				if is_on_floor():
