@@ -1,3 +1,3 @@
-[gd_scene format=3 uid="uid://ee8lcr2upgsn"]
+[gd_scene load_steps=0 format=3 uid="uid://ee8lcr2upgsn"]
 
 [node name="TestDeath" type="Node2D"]
