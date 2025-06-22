@@ -40,9 +40,7 @@ func _init() -> void:
 func _process(_delta):
 	# Handle player death
 	if life <= 0:
-		player_animations.play("death")
-		if _fisished_dying:
-			get_tree().change_scene_to_file("res://test_death.tscn")
+		die()
 			
 	# If player life is more than zero:	
 	else:
@@ -159,6 +157,11 @@ func _on_player_was_damaged() -> void:
 	life -= 1;
 	player_animations.stop()
 
+func die():
+	player_animations.play("death")
+	if _fisished_dying:
+		get_tree().change_scene_to_file("res://test_death.tscn")
 
 static func get_player(scene_tree: SceneTree):
 	return scene_tree.get_first_node_in_group(PLAYER_GROUP)
+	

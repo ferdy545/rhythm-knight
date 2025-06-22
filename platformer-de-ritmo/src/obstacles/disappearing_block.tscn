@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://n77xct5hpmi0"]
+
+[ext_resource type="Script" uid="uid://cc4mymgta1y47" path="res://src/obstacles/disappearing_block.gd" id="1_lmke0"]
+[ext_resource type="Texture2D" uid="uid://c5bji22aujifu" path="res://assets/tiles/Greeb2.png" id="2_1oqrr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7byk6"]
+size = Vector2(190, 190)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6oe88"]
+size = Vector2(190, 20)
+
+[node name="DisappearingBlock" type="StaticBody2D"]
+script = ExtResource("1_lmke0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_1oqrr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7byk6")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(267, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-266, -107)
+shape = SubResource("RectangleShape2D_6oe88")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

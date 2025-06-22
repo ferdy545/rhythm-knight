@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c46w15iuhdheg"]
+[gd_scene load_steps=18 format=3 uid="uid://c46w15iuhdheg"]
 
 [ext_resource type="Texture2D" uid="uid://cjvsh6ugg0f3c" path="res://assets/tiles/Gray4.png" id="1_4c8ei"]
 [ext_resource type="PackedScene" uid="uid://c6wrkkkynee7y" path="res://src/obstacles/moving_platform.tscn" id="2_718px"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cwusbdfjsj3gh" path="res://assets/background/mountain.png" id="12_gvfw4"]
 [ext_resource type="PackedScene" uid="uid://dududnjoyvf1" path="res://src/obstacles/moving_saw.tscn" id="13_3j8sl"]
 [ext_resource type="Texture2D" uid="uid://cmu0eucm2w0op" path="res://assets/background/small_mountains.png" id="13_vevbt"]
+[ext_resource type="PackedScene" uid="uid://n77xct5hpmi0" path="res://src/obstacles/disappearing_block.tscn" id="14_3j8sl"]
 [ext_resource type="AudioStream" uid="uid://bxetk3l38odnn" path="res://assets/music/part1_game.wav" id="14_tklg6"]
 [ext_resource type="PackedScene" uid="uid://ddrf1mul53nnd" path="res://src/player/player.tscn" id="15_lyqas"]
 
@@ -126,7 +127,7 @@ autoplay = true
 bus = &"Music"
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("15_lyqas")]
-position = Vector2(-212, 1144)
+position = Vector2(-688, 867)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 zoom = Vector2(0.5, 0.5)
@@ -139,3 +140,6 @@ position_smoothing_speed = 10.0
 delta_pos = Vector2(0, -500)
 time_to_end = 0.375
 time_to_start = 0.5
+
+[node name="DisappearingBlock" parent="." instance=ExtResource("14_3j8sl")]
+position = Vector2(-1086, 1069)
