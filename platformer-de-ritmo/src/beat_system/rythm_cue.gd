@@ -1,11 +1,11 @@
 extends Node
 
 @export var bpm = 80
-@export var interval_radius = 15
+@export var interval_radius = 0
 var action = "player_parry"
 var scale_factor = 0
 var final_angle = 120
-@export var rotation = 0
+@export var rotation = 15
 
 func _process(delta):
 	#var idle_piece = $IdlePiece

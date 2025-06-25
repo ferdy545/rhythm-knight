@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Platformer de Ritmo"
-run/main_scene="uid://biwx1p81c0qil"
+run/main_scene="uid://c5o641ypqssfb"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
