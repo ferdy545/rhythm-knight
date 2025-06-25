@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc6u5t2l1iv35"]
+
+[ext_resource type="Texture2D" uid="uid://byqhbda6psp3i" path="res://src/Obstacles/saw_b.png" id="1_gski3"]
+
+[sub_resource type="GDScript" id="GDScript_gski3"]
+
+[node name="ObstacleGroup" type="Node2D"]
+script = SubResource("GDScript_gski3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gski3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

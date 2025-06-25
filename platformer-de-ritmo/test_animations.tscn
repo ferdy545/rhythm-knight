@@ -1,4 +1,4 @@
-[gd_scene load_steps=588 format=3 uid="uid://cx0u8yukupocl"]
+[gd_scene load_steps=579 format=3 uid="uid://cx0u8yukupocl"]
 
 [ext_resource type="Texture2D" uid="uid://c5bji22aujifu" path="res://assets/tiles/Greeb2.png" id="1_2hnvi"]
 [ext_resource type="Texture2D" uid="uid://da4x1nmwusg7a" path="res://assets/player/player_animations/Broken/WalkBroken_00.png" id="1_2ybru"]
