@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1rae712l27bc"]
+
+[ext_resource type="Script" uid="uid://bge2yf5m3x8ow" path="res://src/obstacles/moving_saw.gd" id="1_ubt0y"]
+[ext_resource type="Texture2D" uid="uid://bcddk7wto40xx" path="res://assets/tiles/Spikefall.png" id="2_ubt0y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8wha"]
+size = Vector2(189, 51.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrucb"]
+size = Vector2(190, 174)
+
+[node name="MovingSaw" type="StaticBody2D" node_paths=PackedStringArray("detector")]
+script = ExtResource("1_ubt0y")
+detector = NodePath("Area2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(300, 1070)
+texture = ExtResource("2_ubt0y")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(299.5, 1141.75)
+shape = SubResource("RectangleShape2D_t8wha")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(300, 1083)
+shape = SubResource("RectangleShape2D_jrucb")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
