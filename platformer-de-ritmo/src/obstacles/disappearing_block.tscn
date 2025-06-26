@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d4esrj583r3mq"]
 
-[ext_resource type="Script" uid="uid://2sgvk567l8vx" path="res://src/obstacles/disappearing_block.gd" id="1_lmke0"]
+[ext_resource type="Script" uid="uid://cc4mymgta1y47" path="res://src/obstacles/disappearing_block.gd" id="1_lmke0"]
 [ext_resource type="Texture2D" uid="uid://c5bji22aujifu" path="res://assets/tiles/Greeb2.png" id="2_1oqrr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7byk6"]
