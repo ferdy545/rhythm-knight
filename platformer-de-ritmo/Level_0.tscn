@@ -556,6 +556,7 @@ target_path = NodePath("../CharacterBody2D")
 
 [node name="RythmCue" parent="Camera" instance=ExtResource("16_ra7nr")]
 visible = false
+interval_radius = 1
 
 [node name="TestLifeLabel" type="Label" parent="Camera"]
 offset_left = -1100.0
@@ -684,7 +685,7 @@ time_to_start = 0.7
 position = Vector2(8278, 3456)
 
 [node name="MovingSaw6" parent="." instance=ExtResource("41_qqcjh")]
-position = Vector2(1968, 59)
+position = Vector2(1503, -563)
 delta_pos = Vector2(1000, 0)
 time_to_end = 1.0
 time_to_start = 1.0
