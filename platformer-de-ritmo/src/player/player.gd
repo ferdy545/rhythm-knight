@@ -165,7 +165,6 @@ func die():
 	get_tree().current_scene.add_child(game_over_scene.instantiate())
 	get_tree().paused = true 
 	if _fisished_dying:
-		#get_tree().change_scene_to_file("res://test_death.tscn")
 		get_tree().current_scene.add_child(game_over_scene.instantiate())
 
 
