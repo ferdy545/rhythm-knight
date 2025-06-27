@@ -16,3 +16,7 @@ func send_enemy_attack(enemy):
 	
 func send_enemy_was_killed(enemy):
 	SignalBus.send("enemy_was_killed", [enemy])
+	
+
+func send_beat_changed():
+	SignalBus.send("beat_changed", [])

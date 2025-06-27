@@ -19,9 +19,11 @@ var coyote_buffer
 @export var _is_attacking := false
 @export var _is_parrying := false 
 @export var _is_falling := false
+@export var game_over_screen : Node 
 var is_moving
 var can_jump
 var is_in_combat: bool
+	 
 
 var attacks_dict = {
 	"player_attack_up": ["up_arrow", "jump_attack"],
@@ -159,8 +161,11 @@ func _on_player_was_damaged() -> void:
 
 func die():
 	player_animations.play("death")
-	if _fisished_dying:
-		get_tree().change_scene_to_file("res://test_death.tscn")
+	await player_animations.animation_finished
+	game_over_screen.get_child(0).visible = true
+	get_tree().paused = true 
+
+
 
 static func get_player(scene_tree: SceneTree):
 	return scene_tree.get_first_node_in_group(PLAYER_GROUP)

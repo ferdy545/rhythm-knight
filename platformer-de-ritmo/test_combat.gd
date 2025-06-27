@@ -9,7 +9,10 @@ extends Node2D
 @onready var song_beat : AnimationPlayer = $SongBeat
 @onready var rhythms : AnimationPlayer = $Rhythms
 @onready var signal_bus_sender : SignalBusSender = $SignalBusSender
+@onready var signal_bus_receiver : SignalBusReceiver = $SignalBusReceiver
 @onready var player_sprite : Sprite2D = $CharacterBody2D/Sprite2D
+@export var you_win_screen : Node 
+
 
 @export var _beat = false
 @export var _rhythm = false
@@ -34,25 +37,12 @@ var rhythm
 	
 
 func _ready() -> void:
+	SceneManager.current_scene_root = self
 	player = Player.get_player(get_tree())	
 
 
 func _process(_delta: float) -> void:
 	$Camera/TestLifeLabel.text = str(player.life)
-		
-	# Start music a bit earlier to sync it with the rhythms (music is 24s long)
-	if not music.playing:
-		music.play(23.9)
-		
-	# Keep the beat "animation" running
-	if not song_beat.is_playing():
-		song_beat.play("song_beat")
-	
-	# Wait for beat to show the sequence
-	if _beat:
-		_beat = false
-		if in_show_sequence and not rhythms.is_playing():
-			rhythms.play(rhythm[0]) # rhythm[0] contains the rhythm itself
 
 	if player.life > 0:
 		show_sequence()
@@ -214,3 +204,14 @@ func enemy_attack():
 	
 func enemy_killed():
 	signal_bus_sender.send_enemy_was_killed(enemy)
+
+
+func _on_signal_bus_receiver_beat_changed() -> void:
+	if in_show_sequence and not rhythms.is_playing():
+		rhythms.play(rhythm[0]) # rhythm[0] contains the rhythm itself
+
+		
+func _on_player_wins_body_entered(body: Node2D) -> void:
+	if body is Player:
+		you_win_screen.get_child(0).visible = true
+		get_tree().paused = true 

@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmd8q7relmhpm"]
+
+[ext_resource type="Script" uid="uid://to5ds78t0bl1" path="res://src/soundtrack/beat_manager.gd" id="1_47i6l"]
+[ext_resource type="AudioStream" uid="uid://bxetk3l38odnn" path="res://assets/music/part1_game.wav" id="2_dkkk7"]
+[ext_resource type="Script" uid="uid://ci8ucrkmdeptg" path="res://src/signal_bus/signal_bus_sender.gd" id="3_dkkk7"]
+
+[sub_resource type="Animation" id="Animation_jtosv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_beat")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_lueld"]
+resource_name = "song_beat"
+length = 24.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_beat")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3, 3.75, 4.5, 5.25, 6, 6.75, 7.5, 8.25, 9, 9.75, 10.5, 11.25, 12, 12.75, 13.5, 14.25, 15, 15.75, 16.5, 17.25, 18, 18.75, 19.5, 20.25, 21, 21.75, 22.5, 23.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jtosv"]
+_data = {
+&"RESET": SubResource("Animation_jtosv"),
+&"song_beat": SubResource("Animation_lueld")
+}
+
+[node name="BeatManager" type="Node"]
+script = ExtResource("1_47i6l")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_dkkk7")
+bus = &"Music"
+
+[node name="SignalBusSender" type="Node" parent="."]
+script = ExtResource("3_dkkk7")
+metadata/_custom_type_script = "uid://ci8ucrkmdeptg"
+
+[node name="SongBeat" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jtosv")
+}
