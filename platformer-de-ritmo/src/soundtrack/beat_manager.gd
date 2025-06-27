@@ -24,6 +24,4 @@ func _process(delta: float) -> void:
 	
 	if beat > current_beat:
 		current_beat = beat
-		print("beat")
 		signal_bus_sender.send_beat_changed()
-	

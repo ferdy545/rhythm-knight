@@ -1,8 +1,12 @@
 extends Control
 
 
+func _ready() -> void:
+	SceneManager.current_scene_root = self
+	
+
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://test_combat.tscn")
+	SceneManager.go_to_level()
 
 
 func _on_credits_pressed() -> void:
