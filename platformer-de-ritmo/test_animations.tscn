@@ -1,19 +1,27 @@
-[gd_scene load_steps=579 format=3 uid="uid://cx0u8yukupocl"]
+[gd_scene load_steps=588 format=3 uid="uid://cx0u8yukupocl"]
 
+[ext_resource type="Texture2D" uid="uid://c5bji22aujifu" path="res://assets/tiles/Greeb2.png" id="1_2hnvi"]
 [ext_resource type="Texture2D" uid="uid://da4x1nmwusg7a" path="res://assets/player/player_animations/Broken/WalkBroken_00.png" id="1_2ybru"]
 [ext_resource type="Texture2D" uid="uid://ck245xrkcswy0" path="res://assets/player/player_animations/Animation_00.png" id="1_tw5ea"]
 [ext_resource type="Texture2D" uid="uid://ckok2n1uov13l" path="res://assets/player/player_animations/Broken/WalkBroken_01.png" id="2_3ymfv"]
 [ext_resource type="Texture2D" uid="uid://b4s4go3s2gt3a" path="res://assets/player/player_animations/Animation_01.png" id="2_fudcq"]
+[ext_resource type="Texture2D" uid="uid://cvnopxjyveqp4" path="res://assets/tiles/Green1.png" id="2_r7xmn"]
 [ext_resource type="Texture2D" uid="uid://de6axq4ifpvr6" path="res://assets/player/player_animations/Broken/WalkBroken_02.png" id="3_5djp7"]
 [ext_resource type="Texture2D" uid="uid://c1iim6n0iqme7" path="res://assets/player/player_animations/Animation_02.png" id="3_dapa8"]
+[ext_resource type="Texture2D" uid="uid://dlwkxgnx8f5nq" path="res://assets/tiles/Green2.png" id="3_rp1b3"]
+[ext_resource type="Texture2D" uid="uid://d320e5vxoa2nq" path="res://assets/tiles/Green3.1.png" id="4_cuw58"]
 [ext_resource type="Texture2D" uid="uid://r4xapw1606q4" path="res://assets/player/player_animations/Broken/WalkBroken_03.png" id="4_m73e3"]
 [ext_resource type="Texture2D" uid="uid://b8pjgdnujcy1x" path="res://assets/player/player_animations/Animation_03.png" id="4_qndux"]
 [ext_resource type="Texture2D" uid="uid://djo32c5vs6xdq" path="res://assets/player/player_animations/Broken/WalkBroken_04.png" id="5_dtd7o"]
 [ext_resource type="Texture2D" uid="uid://bfqw4cfjp5me2" path="res://assets/player/player_animations/Animation_04.png" id="5_dwdgu"]
+[ext_resource type="Texture2D" uid="uid://dvh5lmwtr8x40" path="res://assets/tiles/Green3.png" id="5_nmyv2"]
+[ext_resource type="Texture2D" uid="uid://ncioo0rukhen" path="res://assets/tiles/Green4.png" id="6_eptrm"]
 [ext_resource type="Texture2D" uid="uid://bvo32l4jaykmt" path="res://assets/player/player_animations/Broken/WalkBroken_05.png" id="6_gjilo"]
 [ext_resource type="Texture2D" uid="uid://tpl626hgg2lo" path="res://assets/player/player_animations/Animation_05.png" id="6_ru5e1"]
 [ext_resource type="Texture2D" uid="uid://btid1dxsg6rst" path="res://assets/player/player_animations/Animation_06.png" id="7_2qlfl"]
 [ext_resource type="Texture2D" uid="uid://d8lcjchoffit" path="res://assets/player/player_animations/Broken/WalkBroken_06.png" id="7_cnib6"]
+[ext_resource type="Texture2D" uid="uid://bwnqt4dacskml" path="res://assets/tiles/Green5.png" id="7_kydwu"]
+[ext_resource type="Texture2D" uid="uid://ds34ousyoipbb" path="res://assets/tiles/Green6.png" id="8_5q23g"]
 [ext_resource type="Texture2D" uid="uid://gogtsbitsa06" path="res://assets/player/player_animations/Broken/WalkBroken_07.png" id="8_c4afc"]
 [ext_resource type="Texture2D" uid="uid://b3b8sxo8pplit" path="res://assets/player/player_animations/Animation_07.png" id="8_qppft"]
 [ext_resource type="Texture2D" uid="uid://ceu6npjkfx7ov" path="res://assets/player/player_animations/Animation_08.png" id="9_hsy65"]
@@ -547,6 +555,38 @@
 [ext_resource type="Texture2D" uid="uid://d0gqu3k33min6" path="res://assets/player/player_animations/Death_24.png" id="485_6ji24"]
 [ext_resource type="Texture2D" uid="uid://20iut8e6fy4s" path="res://assets/player/player_animations/Death_25.png" id="486_l1ppj"]
 [ext_resource type="Texture2D" uid="uid://rump8yt1uhry" path="res://assets/player/player_animations/Death_26.png" id="487_s06hy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ix5f"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("1_2hnvi")
+}, {
+"duration": 2.0,
+"texture": ExtResource("2_r7xmn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rp1b3")
+}, {
+"duration": 0.5,
+"texture": ExtResource("4_cuw58")
+}, {
+"duration": 0.5,
+"texture": ExtResource("5_nmyv2")
+}, {
+"duration": 0.5,
+"texture": ExtResource("6_eptrm")
+}, {
+"duration": 0.5,
+"texture": ExtResource("7_kydwu")
+}, {
+"duration": 10.0,
+"texture": ExtResource("8_5q23g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8n0ab"]
 animations = [{
@@ -2510,6 +2550,11 @@ animations = [{
 }]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="BreakBlock" type="AnimatedSprite2D" parent="."]
+position = Vector2(487, -217)
+sprite_frames = SubResource("SpriteFrames_1ix5f")
+frame_progress = 0.502462
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 

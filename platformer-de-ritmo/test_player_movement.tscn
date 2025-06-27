@@ -1,7 +1,8 @@
-[gd_scene load_steps=65 format=4 uid="uid://biwx1p81c0qil"]
+[gd_scene load_steps=70 format=4 uid="uid://biwx1p81c0qil"]
 
-[ext_resource type="Script" path="res://PlayerLevel.gd" id="1_tcanr"]
+[ext_resource type="Script" uid="uid://c6o4fo6kfg2hg" path="res://PlayerLevel.gd" id="1_tcanr"]
 [ext_resource type="PackedScene" uid="uid://ddrf1mul53nnd" path="res://src/player/player.tscn" id="2_2n3av"]
+[ext_resource type="Script" uid="uid://bge2yf5m3x8ow" path="res://src/obstacles/moving_saw.gd" id="2_f5pck"]
 [ext_resource type="Texture2D" uid="uid://ca3bsiev8nuhb" path="res://assets/background/outerspace.png" id="3_xbli7"]
 [ext_resource type="Texture2D" uid="uid://7s7jaj56feaf" path="res://assets/background/small_moon.png" id="4_nedis"]
 [ext_resource type="Texture2D" uid="uid://bbpscwj8cd8ii" path="res://assets/background/red_planet.png" id="5_b8pac"]
@@ -32,6 +33,9 @@
 [ext_resource type="Texture2D" uid="uid://c250k85h7eexj" path="res://assets/tiles/DoorDown.png" id="27_oix86"]
 [ext_resource type="Texture2D" uid="uid://dov2hew6cup1a" path="res://assets/tiles/DoorUp.png" id="28_bwo7k"]
 [ext_resource type="Texture2D" uid="uid://dcm3ob0ef252x" path="res://assets/tiles/Gray5.png" id="29_scd4n"]
+[ext_resource type="PackedScene" uid="uid://dududnjoyvf1" path="res://src/obstacles/moving_saw.tscn" id="34_nhkhe"]
+[ext_resource type="PackedScene" uid="uid://dxur104vkmqy8" path="res://src/obstacles/moving_platform.tscn" id="35_nhkhe"]
+[ext_resource type="PackedScene" uid="uid://d4esrj583r3mq" path="res://src/obstacles/disappearing_block.tscn" id="36_auy5n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8uh7m"]
 size = Vector2(1150, 20)
@@ -228,12 +232,15 @@ sources/10 = SubResource("TileSetAtlasSource_82ugj")
 sources/23 = SubResource("TileSetAtlasSource_xepwx")
 sources/24 = SubResource("TileSetAtlasSource_wtjqq")
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_auy5n"]
+
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_tcanr")
 player = NodePath("CharacterBody2D")
 
 [node name="Area2D" type="RigidBody2D" parent="."]
 gravity_scale = 0.0
+script = ExtResource("2_f5pck")
 
 [node name="CollisionShape2D_1" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(372, 1298.31)
@@ -331,3 +338,49 @@ flip_h = true
 position = Vector2(8611, 1014)
 texture = ExtResource("22_q8lne")
 flip_h = true
+
+[node name="MovingSaw3" parent="." instance=ExtResource("34_nhkhe")]
+position = Vector2(11688, 109)
+physics_material_override = SubResource("PhysicsMaterial_auy5n")
+constant_linear_velocity = Vector2(1, 1)
+delta_pos = Vector2(1, 1)
+time_to_end = 1.0
+time_to_start = 1.0
+
+[node name="MovingSaw3" parent="MovingSaw3" instance=ExtResource("34_nhkhe")]
+position = Vector2(10598, -203)
+physics_material_override = SubResource("PhysicsMaterial_auy5n")
+constant_linear_velocity = Vector2(1, 1)
+delta_pos = Vector2(1, 1)
+time_to_end = 1.0
+time_to_start = 1.0
+
+[node name="MovingSaw3" parent="MovingSaw3/MovingSaw3" instance=ExtResource("34_nhkhe")]
+position = Vector2(6817, 263)
+physics_material_override = SubResource("PhysicsMaterial_auy5n")
+constant_linear_velocity = Vector2(1, 1)
+delta_pos = Vector2(1, 1)
+time_to_end = 1.0
+time_to_start = 1.0
+
+[node name="MovingSaw2" parent="." instance=ExtResource("34_nhkhe")]
+position = Vector2(11289, 110)
+physics_material_override = SubResource("PhysicsMaterial_auy5n")
+constant_linear_velocity = Vector2(1, 1)
+delta_pos = Vector2(1, 1)
+time_to_end = 1.0
+time_to_start = 1.0
+
+[node name="MovingSaw" parent="." instance=ExtResource("34_nhkhe")]
+position = Vector2(3730, -424)
+physics_material_override = SubResource("PhysicsMaterial_auy5n")
+constant_linear_velocity = Vector2(1, 1)
+delta_pos = Vector2(1, 1)
+time_to_end = 1.0
+time_to_start = 1.0
+
+[node name="MovingPlatform" parent="." instance=ExtResource("35_nhkhe")]
+position = Vector2(9475, -134)
+
+[node name="DisappearingBlock" parent="." instance=ExtResource("36_auy5n")]
+position = Vector2(12780, 1228)

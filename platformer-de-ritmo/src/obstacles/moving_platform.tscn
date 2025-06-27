@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6wrkkkynee7y"]
+[gd_scene load_steps=5 format=3 uid="uid://dxur104vkmqy8"]
 
 [ext_resource type="Script" uid="uid://dfwmfx2pxtms0" path="res://src/obstacles/moving_platform.gd" id="1_kt0nl"]
 [ext_resource type="Texture2D" uid="uid://sc3eha7tthsh" path="res://assets/tiles/Random Tile.jpg" id="2_kt0nl"]

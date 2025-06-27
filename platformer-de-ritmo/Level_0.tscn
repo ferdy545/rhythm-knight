@@ -1,0 +1,693 @@
+[gd_scene load_steps=93 format=4 uid="uid://c5o641ypqssfb"]
+
+[ext_resource type="Script" uid="uid://kwq2scek371a" path="res://test_combat.gd" id="1_c1n6l"]
+[ext_resource type="Script" uid="uid://bge2yf5m3x8ow" path="res://src/obstacles/moving_saw.gd" id="2_43c05"]
+[ext_resource type="PackedScene" uid="uid://ddrf1mul53nnd" path="res://src/player/player.tscn" id="3_pfde7"]
+[ext_resource type="Texture2D" uid="uid://ca3bsiev8nuhb" path="res://assets/background/outerspace.png" id="4_h48pw"]
+[ext_resource type="Texture2D" uid="uid://7s7jaj56feaf" path="res://assets/background/small_moon.png" id="5_xda5q"]
+[ext_resource type="Texture2D" uid="uid://bbpscwj8cd8ii" path="res://assets/background/red_planet.png" id="6_xe6rt"]
+[ext_resource type="Texture2D" uid="uid://d4dcmn2r4fn2j" path="res://assets/background/atmosphere.png" id="7_888db"]
+[ext_resource type="Texture2D" uid="uid://dj8vnu5q6qa5t" path="res://assets/background/mountain_range.png" id="8_yybio"]
+[ext_resource type="Texture2D" uid="uid://cwusbdfjsj3gh" path="res://assets/background/mountain.png" id="9_r23t0"]
+[ext_resource type="Texture2D" uid="uid://cmu0eucm2w0op" path="res://assets/background/small_mountains.png" id="10_mn7d4"]
+[ext_resource type="PackedScene" uid="uid://c743ak0icsd56" path="res://src/enemy/enemy.tscn" id="11_xihk0"]
+[ext_resource type="Script" uid="uid://ci8ucrkmdeptg" path="res://src/signal_bus/signal_bus_sender.gd" id="12_wusj0"]
+[ext_resource type="Script" uid="uid://dfe6xrfsd4d87" path="res://src/signal_bus/signal_bus_receiver.gd" id="13_krdci"]
+[ext_resource type="PackedScene" uid="uid://dsjo8et0etdou" path="res://src/soundfx/soundfx.tscn" id="14_oax4b"]
+[ext_resource type="PackedScene" uid="uid://d17xkgnpbux8v" path="res://src/camera/camera.tscn" id="15_65ocb"]
+[ext_resource type="PackedScene" uid="uid://bhgbket3pxnon" path="res://src/beat_system/rythm_cue.tscn" id="16_ra7nr"]
+[ext_resource type="PackedScene" uid="uid://sqlbfktgqev6" path="res://src/rhythm_arrows/arrow.tscn" id="17_qjl1h"]
+[ext_resource type="AudioStream" uid="uid://bxetk3l38odnn" path="res://assets/music/part1_game.wav" id="18_0vh41"]
+[ext_resource type="Texture2D" uid="uid://0yrhmtpegkwj" path="res://assets/tiles/Gray2.png" id="19_gseis"]
+[ext_resource type="Texture2D" uid="uid://bcddk7wto40xx" path="res://assets/tiles/Spikefall.png" id="20_bn0p8"]
+[ext_resource type="Texture2D" uid="uid://8gwg1uubfflc" path="res://assets/tiles/MusicGameTile3.png" id="21_6ka47"]
+[ext_resource type="Texture2D" uid="uid://boax4r7mddohw" path="res://assets/tiles/MusicGameTile4.png" id="22_3dbvy"]
+[ext_resource type="Texture2D" uid="uid://dy80yjiytus2w" path="res://assets/tiles/MusicGameTileMap2.png" id="23_fx5av"]
+[ext_resource type="Texture2D" uid="uid://dvbdwfx4qp4yp" path="res://assets/tiles/MusicGameTileMap.png" id="24_mqxeb"]
+[ext_resource type="Texture2D" uid="uid://sc3eha7tthsh" path="res://assets/tiles/Random Tile.jpg" id="25_5aqw3"]
+[ext_resource type="Texture2D" uid="uid://q5x7t3eqvjlv" path="res://assets/tiles/TileMap5.png" id="26_cq6pb"]
+[ext_resource type="Texture2D" uid="uid://ub1at1gqg3yt" path="res://assets/tiles/TileMap6.png" id="27_7erqt"]
+[ext_resource type="Texture2D" uid="uid://qjooc3ioad1k" path="res://assets/tiles/TileMap7.png" id="28_rns2r"]
+[ext_resource type="Texture2D" uid="uid://dneooscw7n0s8" path="res://assets/tiles/TileMap8.png" id="29_udaa0"]
+[ext_resource type="Texture2D" uid="uid://q3wukb6daqwo" path="res://assets/tiles/Gray3.png" id="30_ji6cf"]
+[ext_resource type="Texture2D" uid="uid://tmmlf312ys4d" path="res://assets/tiles/TileMap9.png" id="31_qqjq1"]
+[ext_resource type="Texture2D" uid="uid://lhsfues8s3xa" path="res://assets/tiles/TyleFly.png" id="32_lwn1o"]
+[ext_resource type="Texture2D" uid="uid://ddyo5pssy2jl5" path="res://assets/tiles/TyleDamage.png" id="33_fh8ey"]
+[ext_resource type="Texture2D" uid="uid://dk88xv3hv8rry" path="res://assets/tiles/SpriteFall.png" id="34_pmajg"]
+[ext_resource type="Texture2D" uid="uid://cjvsh6ugg0f3c" path="res://assets/tiles/Gray4.png" id="35_aftfm"]
+[ext_resource type="Texture2D" uid="uid://cp1uwhwc3cabp" path="res://assets/tiles/Gray.png" id="36_wx3wm"]
+[ext_resource type="Texture2D" uid="uid://c5bji22aujifu" path="res://assets/tiles/Greeb2.png" id="37_k7wnc"]
+[ext_resource type="Texture2D" uid="uid://c250k85h7eexj" path="res://assets/tiles/DoorDown.png" id="38_xrcli"]
+[ext_resource type="Texture2D" uid="uid://dov2hew6cup1a" path="res://assets/tiles/DoorUp.png" id="39_5df8h"]
+[ext_resource type="Texture2D" uid="uid://dcm3ob0ef252x" path="res://assets/tiles/Gray5.png" id="40_c2se3"]
+[ext_resource type="PackedScene" uid="uid://dududnjoyvf1" path="res://src/obstacles/moving_saw.tscn" id="41_qqcjh"]
+[ext_resource type="PackedScene" uid="uid://dxur104vkmqy8" path="res://src/obstacles/moving_platform.tscn" id="42_nqv7o"]
+[ext_resource type="PackedScene" uid="uid://d4esrj583r3mq" path="res://src/obstacles/disappearing_block.tscn" id="43_t0v8p"]
+[ext_resource type="PackedScene" uid="uid://be75wmqp1h6c4" path="res://src/obstacles/Moving_Plataform2.tscn" id="44_leanw"]
+[ext_resource type="PackedScene" uid="uid://d1rae712l27bc" path="res://src/obstacles/Spike_Trap.tscn" id="45_uk2ay"]
+[ext_resource type="PackedScene" uid="uid://fc5bhausid1c" path="res://src/obstacles/FallingRock.tscn" id="46_j882y"]
+[ext_resource type="PackedScene" uid="uid://oarkirkluspx" path="res://src/obstacles/DeathArea.tscn" id="47_k77c3"]
+
+[sub_resource type="Animation" id="Animation_8rlkd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_rhythm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_re2ea"]
+resource_name = "rhythm1"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_rhythm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.75, 1, 1.5, 1.75, 2.25, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_2tgml"]
+resource_name = "rhythm10"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_rhythm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.375, 0.625, 0.75, 1, 1.875, 2.125, 2.25, 2.5, 2.625, 2.875),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_1knhn"]
+resource_name = "rhythm2"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_rhythm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.375, 0.625, 1.5, 1.75, 1.875, 2.125),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_2e6ak"]
+resource_name = "rhythm3"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_rhythm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.75, 1, 1.125, 1.375, 1.5, 1.75, 2.25, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_533ge"]
+resource_name = "rhythm4"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_rhythm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.375, 0.625, 1.125, 1.375, 1.5, 1.75, 2.25, 2.5, 2.625, 2.875),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_i6bw3"]
+resource_name = "rhythm5"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_rhythm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.75, 1, 1.5, 1.75, 1.875, 2.125, 2.25, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_vlme0"]
+resource_name = "rhythm6"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_rhythm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.366667, 0.616667, 1.11667, 1.36667, 1.49167, 1.74167, 2.24167, 2.49167),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_bjqyx"]
+resource_name = "rhythm7"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_rhythm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 1.125, 1.375, 2.25, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_atyb1"]
+resource_name = "rhythm8"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_rhythm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.375, 0.625, 1.125, 1.375, 1.875, 2.125),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_4j0yo"]
+resource_name = "rhythm9"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_rhythm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 1.125, 1.375, 1.5, 1.75, 2.625, 2.875, 75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8rlkd"]
+_data = {
+&"RESET": SubResource("Animation_8rlkd"),
+&"rhythm1": SubResource("Animation_re2ea"),
+&"rhythm10": SubResource("Animation_2tgml"),
+&"rhythm2": SubResource("Animation_1knhn"),
+&"rhythm3": SubResource("Animation_2e6ak"),
+&"rhythm4": SubResource("Animation_533ge"),
+&"rhythm5": SubResource("Animation_i6bw3"),
+&"rhythm6": SubResource("Animation_vlme0"),
+&"rhythm7": SubResource("Animation_bjqyx"),
+&"rhythm8": SubResource("Animation_atyb1"),
+&"rhythm9": SubResource("Animation_4j0yo")
+}
+
+[sub_resource type="Animation" id="Animation_jtosv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_beat")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_lueld"]
+resource_name = "song_beat"
+length = 24.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_beat")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3, 3.75, 4.5, 5.25, 6, 6.75, 7.5, 8.25, 9, 9.75, 10.5, 11.25, 12, 12.75, 13.5, 14.25, 15, 15.75, 16.5, 17.25, 18, 18.75, 19.5, 20.25, 21, 21.75, 22.5, 23.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jtosv"]
+_data = {
+&"RESET": SubResource("Animation_jtosv"),
+&"song_beat": SubResource("Animation_lueld")
+}
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_akxhx"]
+resource_local_to_scene = true
+bounce = 0.35
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qn8xv"]
+bounce = 0.15
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cm4ew"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_g8fik"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2w5t0"]
+texture = ExtResource("19_gseis")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ua54c"]
+texture = ExtResource("20_bn0p8")
+texture_region_size = Vector2i(200, 200)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xyu3d"]
+texture = ExtResource("21_6ka47")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-62.0046, -60.2331, -5.31467, -100, 60.2331, -62.0046, 100, 5.31467, 63.7762, 62.0046, -5.31467, 100, -60.2331, 63.7762, -100, 7.08624)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gdqym"]
+texture = ExtResource("22_3dbvy")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qi8e2"]
+texture = ExtResource("23_fx5av")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3cure"]
+texture = ExtResource("24_mqxeb")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ugm7c"]
+texture = ExtResource("25_5aqw3")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f8iqs"]
+texture = ExtResource("26_cq6pb")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cp251"]
+texture = ExtResource("27_7erqt")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o88ef"]
+texture = ExtResource("28_rns2r")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_27ycg"]
+texture = ExtResource("29_udaa0")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rlyne"]
+texture = ExtResource("30_ji6cf")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s0b7x"]
+texture = ExtResource("31_qqjq1")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hnjn4"]
+texture = ExtResource("32_lwn1o")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+0:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_akad0"]
+texture = ExtResource("33_fh8ey")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kfcb6"]
+texture = ExtResource("34_pmajg")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 47.8321, 100, 100, -100, 100)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6pylf"]
+texture = ExtResource("20_bn0p8")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3o8hl"]
+texture = ExtResource("35_aftfm")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nce2q"]
+texture = ExtResource("36_wx3wm")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wg3fo"]
+texture = ExtResource("37_k7wnc")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3ax6w"]
+texture = ExtResource("33_fh8ey")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h8jf7"]
+texture = ExtResource("38_xrcli")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ce8tn"]
+texture = ExtResource("39_5df8h")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h1txs"]
+texture = ExtResource("40_c2se3")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_yft5q"]
+tile_size = Vector2i(200, 200)
+physics_layer_0/collision_layer = 1
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_akxhx")
+physics_layer_1/collision_layer = 1
+physics_layer_1/physics_material = SubResource("PhysicsMaterial_qn8xv")
+physics_layer_2/collision_layer = 1
+physics_layer_2/physics_material = SubResource("PhysicsMaterial_cm4ew")
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Ground"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/11 = SubResource("TileSetAtlasSource_xyu3d")
+sources/12 = SubResource("TileSetAtlasSource_gdqym")
+sources/13 = SubResource("TileSetAtlasSource_qi8e2")
+sources/14 = SubResource("TileSetAtlasSource_3cure")
+sources/15 = SubResource("TileSetAtlasSource_ugm7c")
+sources/16 = SubResource("TileSetAtlasSource_f8iqs")
+sources/17 = SubResource("TileSetAtlasSource_cp251")
+sources/18 = SubResource("TileSetAtlasSource_o88ef")
+sources/19 = SubResource("TileSetAtlasSource_27ycg")
+sources/20 = SubResource("TileSetAtlasSource_s0b7x")
+sources/21 = SubResource("TileSetAtlasSource_hnjn4")
+sources/22 = SubResource("TileSetAtlasSource_akad0")
+sources/0 = SubResource("TileSetScenesCollectionSource_g8fik")
+sources/1 = SubResource("TileSetAtlasSource_2w5t0")
+sources/2 = SubResource("TileSetAtlasSource_rlyne")
+sources/3 = SubResource("TileSetAtlasSource_3o8hl")
+sources/4 = SubResource("TileSetAtlasSource_nce2q")
+sources/5 = SubResource("TileSetAtlasSource_wg3fo")
+sources/6 = SubResource("TileSetAtlasSource_3ax6w")
+sources/7 = SubResource("TileSetAtlasSource_h8jf7")
+sources/8 = SubResource("TileSetAtlasSource_ce8tn")
+sources/9 = SubResource("TileSetAtlasSource_h1txs")
+sources/10 = SubResource("TileSetAtlasSource_ua54c")
+sources/23 = SubResource("TileSetAtlasSource_kfcb6")
+sources/24 = SubResource("TileSetAtlasSource_6pylf")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wkgdv"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_c1n6l")
+
+[node name="Area2D" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+script = ExtResource("2_43c05")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_pfde7")]
+position = Vector2(451, 775)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.01, 0.01)
+motion_mirroring = Vector2(2880, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer1"]
+texture = ExtResource("4_h48pw")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.025, 0.025)
+motion_mirroring = Vector2(2880, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("5_xda5q")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.05, 0.05)
+motion_mirroring = Vector2(2880, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("6_xe6rt")
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.075, 0.075)
+motion_mirroring = Vector2(2880, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource("7_888db")
+centered = false
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(2880, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource("8_yybio")
+centered = false
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.25, 0.25)
+motion_mirroring = Vector2(2880, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
+texture = ExtResource("9_r23t0")
+centered = false
+
+[node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(2880, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer7"]
+texture = ExtResource("10_mn7d4")
+centered = false
+
+[node name="Enemy1" parent="." instance=ExtResource("11_xihk0")]
+position = Vector2(23988, 901)
+
+[node name="Enemy2" parent="." instance=ExtResource("11_xihk0")]
+position = Vector2(-207, 826)
+
+[node name="SignalBusSender" type="Node" parent="."]
+script = ExtResource("12_wusj0")
+metadata/_custom_type_script = "uid://ci8ucrkmdeptg"
+
+[node name="SignalBusReceiver" type="Node" parent="."]
+script = ExtResource("13_krdci")
+metadata/_custom_type_script = "uid://dfe6xrfsd4d87"
+
+[node name="Soundfx" parent="." instance=ExtResource("14_oax4b")]
+
+[node name="Camera" parent="." instance=ExtResource("15_65ocb")]
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+target_path = NodePath("../CharacterBody2D")
+
+[node name="RythmCue" parent="Camera" instance=ExtResource("16_ra7nr")]
+visible = false
+interval_radius = 1
+
+[node name="TestLifeLabel" type="Label" parent="Camera"]
+offset_left = -1100.0
+offset_top = -600.0
+offset_right = -844.0
+offset_bottom = -344.0
+theme_override_font_sizes/font_size = 100
+
+[node name="Arrow" parent="Camera" instance=ExtResource("17_qjl1h")]
+position = Vector2(0, -400)
+
+[node name="Rhythms" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8rlkd")
+}
+
+[node name="SongBeat" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jtosv")
+}
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_0vh41")
+bus = &"Music"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(-114, 78)
+tile_map_data = PackedByteArray("AAAAAAYADgAAAAAAAAABAAYADgAAAAAAAAACAAYADgAAAAAAAAADAAYADgAAAAAAAAAEAAYADgAAAAAAAAAFAAYADgAAAAAAAAAGAAYAEgAAAAAAAAAHAAYAFAAAAAAAAAAIAAYADgAAAAAAAAAJAAYADgAAAAAAAAAKAAYADgAAAAAAAAALAAYADgAAAAAAAAAMAAYADgAAAAAAAAANAAYADgAAAAAAAAAOAAYADgAAAAAAAAAPAAYADgAAAAAAAAAQAAYADgAAAAAAAAARAAYADgAAAAAAAAASAAYADgAAAAAAAAATAAYADgAAAAAAAAAUAAYADgAAAAAAAAAVAAYADgAAAAAAAAAWAAYADgAAAAAAAAAXAAYADgAAAAAAAAAYAAYADgAAAAAAAAAZAAYADgAAAAAAAAAaAAYADgAAAAAAAAAbAAYADgAAAAAAAAAcAAYADgAAAAAAAAAdAAYADAAAAAAAAAAIAAMAFQAAAAAAAAANAAMAFQAAAAAAAAATAAQAFQAAAAAAAAAYAAMAFQAAAAAAAAAPAAUADwAAAAAAAAAQAAUADwAAAAAAAAAGAAUAEgAAAAAAAAAHAAUAFAAAAAAAAAAGAAQAEAAAAAAAAAAHAAQADAAAAAAAAAAGAAcADgAAAAAAAAAHAAcADgAAAAAAAAAkAAYADgAAAAAAAAAlAAYADgAAAAAAAAAmAAYADgAAAAAAAAAnAAYADgAAAAAAAAAoAAYADgAAAAAAAAApAAYADgAAAAAAAAAqAAYADgAAAAAAAAArAAYADgAAAAAAAAAtAAYADgAAAAAAAAAsAAYADgAAAAAAAAAuAAYADgAAAAAAAAAvAAYADgAAAAAAAAAwAAYADgAAAAAAAAAxAAYADgAAAAAAAABCAAYADgAAAAAAAABDAAYADgAAAAAAAABEAAYADgAAAAAAAABFAAYADgAAAAAAAABGAAYADgAAAAAAAABHAAYADgAAAAAAAABIAAYADgAAAAAAAABJAAYADgAAAAAAAABKAAYADgAAAAAAAABLAAYADgAAAAAAAABMAAYADQAAAAAAAABNAAYADQAAAAAAAABOAAYADQAAAAAAAABPAAYADQAAAAAAAABQAAYADQAAAAAAAABRAAYADQAAAAAAAABSAAYADQAAAAAAAABTAAYADQAAAAAAAABUAAYADQAAAAAAAABVAAYADQAAAAAAAABWAAYADQAAAAAAAABXAAYADQAAAAAAAABZAAYADQAAAAAAAABaAAYADQAAAAAAAABbAAYADQAAAAAAAABcAAYADQAAAAAAAABdAAYADQAAAAAAAABeAAYADQAAAAAAAABpAAUADQAAAAAAAABqAAUADQAAAAAAAABrAAUADQAAAAAAAABsAAUADQAAAAAAAABtAAUADQAAAAAAAABuAAUADQAAAAAAAABvAAUADQAAAAAAAABwAAUADQAAAAAAAABxAAUADgAAAAAAAAB2AAUADgAAAAAAAAB3AAUADgAAAAAAAAB4AAUADgAAAAAAAAB5AAUADgAAAAAAAAB6AAUADgAAAAAAAAB7AAUADgAAAAAAAAB8AAUADgAAAAAAAAB9AAUADgAAAAAAAAB+AAUADgAAAAAAAAB/AAUADgAAAAAAAACAAAUADgAAAAAAAACBAAUADgAAAAAAAACCAAUADgAAAAAAAACDAAUADgAAAAAAAACEAAUADgAAAAAAAACFAAUADgAAAAAAAACGAAUADAAAAAAAAACHAAYADgAAAAAAAACIAAYADgAAAAAAAACJAAYADgAAAAAAAACKAAYADgAAAAAAAACLAAYADgAAAAAAAACMAAYADgAAAAAAAACNAAYADgAAAAAAAACOAAYADgAAAAAAAACPAAYADgAAAAAAAACQAAYADgAAAAAAAACRAAYADgAAAAAAAABMAAUAAgAAAAAAAABNAAUAAgAAAAAAAABOAAUAAgAAAAAAAABPAAQAAgAAAAAAAABQAAQAAgAAAAAAAABRAAQAAgAAAAAAAABSAAQAAgAAAAAAAABTAAQAAgAAAAAAAABUAAQAAgAAAAAAAABVAAQAAgAAAAAAAABWAAQAAgAAAAAAAABXAAQAAgAAAAAAAABYAAQAAgAAAAAAAABZAAQAAgAAAAAAAABaAAQAAgAAAAAAAABbAAQAAgAAAAAAAABcAAQAAgAAAAAAAABdAAQAAgAAAAAAAABeAAQAAgAAAAAAAABfAAQAAgAAAAAAAABeAAUAAgAAAAAAAABdAAUAAgAAAAAAAABcAAUAAgAAAAAAAABbAAUAAgAAAAAAAABaAAUAAgAAAAAAAABZAAUAAgAAAAAAAABYAAUAAgAAAAAAAABXAAUAAgAAAAAAAABWAAUAAgAAAAAAAABVAAUAAgAAAAAAAABUAAUAAgAAAAAAAABTAAUAAgAAAAAAAABSAAUAAgAAAAAAAABRAAUAAgAAAAAAAABQAAUAAgAAAAAAAABPAAUAAgAAAAAAAABTAAMAAgAAAAAAAABgAAEAAgAAAAAAAABfAAEAAgAAAAAAAABeAAEAAgAAAAAAAABdAAIAAgAAAAAAAABcAAIAAgAAAAAAAABbAAIAAgAAAAAAAABaAAIAAgAAAAAAAABZAAIAAgAAAAAAAABYAAIAAgAAAAAAAABYAAMAAgAAAAAAAABXAAMAAgAAAAAAAABWAAMAAgAAAAAAAABVAAMAAgAAAAAAAABUAAMAAgAAAAAAAABZAAMAAgAAAAAAAABaAAMAAgAAAAAAAABbAAMAAgAAAAAAAABcAAMAAgAAAAAAAABdAAMAAgAAAAAAAABeAAMAAgAAAAAAAABfAAIAAgAAAAAAAABgAAIAAgAAAAAAAABhAAEAAgAAAAAAAABdAAEAAgAAAAAAAABeAAIAAgAAAAAAAABfAAMAAgAAAAAAAABgAAMAAgAAAAAAAAABAAcABAAAAAAAAAACAAcABAAAAAAAAAADAAcABAAAAAAAAAADAAgAAQAAAAAAAAAHAAgAAQAAAAAAAAAAAAgAAQAAAAAAAAAKAAcAAQAAAAAAAAALAAgAAQAAAAAAAAAMAAgAAQAAAAAAAAANAAgAAQAAAAAAAAANAAcAAQAAAAAAAAAEAAcABAAAAAAAAAAFAAcABAAAAAAAAAAFAAgABAAAAAAAAAAEAAgABAAAAAAAAAAEAAkABAAAAAAAAAADAAkADQAAAAAAAAACAAkABAAAAAAAAAABAAkABAAAAAAAAAABAAgABAAAAAAAAAACAAgABAAAAAAAAAAAAAcABAAAAAAAAAD//wcABAAAAAAAAAD//wgABAAAAAAAAAD//wkABAAAAAAAAAAAAAkABAAAAAAAAAAFAAkABAAAAAAAAAAGAAkABAAAAAAAAAAGAAgABAAAAAAAAAAHAAkABAAAAAAAAAAIAAkABAAAAAAAAAAIAAgABAAAAAAAAAAIAAcABAAAAAAAAAAJAAcABAAAAAAAAAAJAAgABAAAAAAAAAAJAAkABAAAAAAAAAAKAAgABAAAAAAAAAAKAAkABAAAAAAAAAALAAkABAAAAAAAAAAMAAkABAAAAAAAAAALAAcABAAAAAAAAAANAAkABAAAAAAAAAAOAAkABAAAAAAAAAAPAAkABAAAAAAAAAAQAAkABAAAAAAAAAARAAkABAAAAAAAAAASAAkAAQAAAAAAAAATAAkABAAAAAAAAAAUAAkABAAAAAAAAAAMAAcADQAAAAAAAAAOAAgABAAAAAAAAAAPAAgABAAAAAAAAAAQAAgABAAAAAAAAAARAAgABAAAAAAAAAASAAgABAAAAAAAAAATAAgABAAAAAAAAAAUAAgACQAAAAAAAAAVAAgABAAAAAAAAAAWAAgABAAAAAAAAAAXAAgAAQAAAAAAAAAYAAgABAAAAAAAAAAVAAkABAAAAAAAAAAWAAkABAAAAAAAAAAXAAkABAAAAAAAAAAYAAkABAAAAAAAAAAZAAkABAAAAAAAAAAaAAkABAAAAAAAAAAbAAkABAAAAAAAAAAcAAkABAAAAAAAAAAcAAgABAAAAAAAAAAcAAcABAAAAAAAAAAbAAcABAAAAAAAAAAaAAcABAAAAAAAAAAZAAcABAAAAAAAAAAYAAcABAAAAAAAAAAXAAcABAAAAAAAAAAWAAcABAAAAAAAAAAVAAcABAAAAAAAAAAUAAcABAAAAAAAAAATAAcABAAAAAAAAAASAAcABAAAAAAAAAARAAcABAAAAAAAAAAQAAcABAAAAAAAAAAPAAcABAAAAAAAAAAOAAcABAAAAAAAAAAZAAgADQAAAAAAAAAaAAgABAAAAAAAAAAbAAgABAAAAAAAAAAdAAcABAAAAAAAAAAdAAgABAAAAAAAAAAdAAkABAAAAAAAAABhAAIAAgAAAAAAAABpAAQAAgAAAAAAAABqAAQAAgAAAAAAAABrAAQAAgAAAAAAAABsAAQAAgAAAAAAAABtAAQAAgAAAAAAAABuAAQAAgAAAAAAAABvAAQAAgAAAAAAAABwAAQAAgAAAAAAAABqAAMAAgAAAAAAAABrAAMAAgAAAAAAAABsAAMAAgAAAAAAAABtAAMAAgAAAAAAAABuAAMAAgAAAAAAAABvAAMAAgAAAAAAAABwAAMAAgAAAAAAAABoAAQAAgAAAAAAAABoAAUAAgAAAAAAAAAkAAcABAAAAAAAAAAlAAcABAAAAAAAAAAmAAcABAAAAAAAAAAnAAcABAAAAAAAAAAoAAcABAAAAAAAAAApAAcABAAAAAAAAAAqAAcABAAAAAAAAAArAAcABAAAAAAAAAAsAAcABAAAAAAAAAAtAAcABAAAAAAAAAAuAAcABAAAAAAAAAAvAAcABAAAAAAAAAAwAAcABAAAAAAAAAAwAAgABAAAAAAAAAAvAAgABAAAAAAAAAAvAAkABAAAAAAAAAAuAAkAAQAAAAAAAAAtAAkABAAAAAAAAAAsAAkAAQAAAAAAAAArAAkAAQAAAAAAAAAqAAkABAAAAAAAAAApAAkABAAAAAAAAAAoAAkABAAAAAAAAAAnAAkABAAAAAAAAAAmAAkACQAAAAAAAAAlAAkABAAAAAAAAAAkAAkABAAAAAAAAAAkAAgABAAAAAAAAAAlAAgABAAAAAAAAAAmAAgABAAAAAAAAAAnAAgABAAAAAAAAAAoAAgABAAAAAAAAAApAAgABAAAAAAAAAAqAAgAAQAAAAAAAAArAAgAAQAAAAAAAAAsAAgABAAAAAAAAAAtAAgABAAAAAAAAAAuAAgABAAAAAAAAAAkAAoABAAAAAAAAAAlAAoABAAAAAAAAAAmAAoABAAAAAAAAAAnAAoABAAAAAAAAAAoAAoABAAAAAAAAAAuAAoABAAAAAAAAAAtAAoABAAAAAAAAAAsAAoABAAAAAAAAAArAAoABAAAAAAAAAAqAAoABAAAAAAAAAApAAoABAAAAAAAAAAvAAoABAAAAAAAAAAwAAoABAAAAAAAAAAwAAkABAAAAAAAAAAxAAgABAAAAAAAAAAxAAcABAAAAAAAAAAxAAkABAAAAAAAAAAxAAoABAAAAAAAAABDAAcABAAAAAAAAABEAAcABAAAAAAAAABFAAcABAAAAAAAAABGAAcAAQAAAAAAAABHAAcABAAAAAAAAABIAAcABAAAAAAAAABJAAcABAAAAAAAAABKAAcABAAAAAAAAABLAAcABAAAAAAAAABMAAcABAAAAAAAAABNAAcABAAAAAAAAABOAAcABAAAAAAAAABCAAcABAAAAAAAAABRAAcABAAAAAAAAABSAAcABAAAAAAAAABTAAcABAAAAAAAAABUAAcABAAAAAAAAABVAAcABAAAAAAAAABWAAcABAAAAAAAAABXAAcABAAAAAAAAABYAAcABAAAAAAAAABZAAcABAAAAAAAAABaAAcABAAAAAAAAABbAAcABAAAAAAAAABcAAcABAAAAAAAAABdAAcABAAAAAAAAABeAAcABAAAAAAAAABdAAgABAAAAAAAAABdAAkABAAAAAAAAABcAAkABAAAAAAAAABbAAoABAAAAAAAAABaAAoABAAAAAAAAABZAAoABAAAAAAAAABYAAoABAAAAAAAAABXAAoABAAAAAAAAABWAAoABAAAAAAAAABVAAoABAAAAAAAAABUAAoABAAAAAAAAABTAAoAAQAAAAAAAABSAAoABAAAAAAAAABRAAoABAAAAAAAAABQAAoABAAAAAAAAABPAAoABAAAAAAAAABOAAoABAAAAAAAAABNAAoABAAAAAAAAABMAAoABAAAAAAAAABLAAoABAAAAAAAAABKAAoABAAAAAAAAABJAAoABAAAAAAAAABGAAkABAAAAAAAAABFAAkABAAAAAAAAABEAAkABAAAAAAAAABDAAkABAAAAAAAAABCAAkABAAAAAAAAABCAAgABAAAAAAAAABDAAgABAAAAAAAAABPAAcABAAAAAAAAABQAAcABAAAAAAAAABbAAgAAQAAAAAAAABaAAgABAAAAAAAAABZAAgABAAAAAAAAABYAAgABAAAAAAAAABXAAgABAAAAAAAAABWAAgABAAAAAAAAABVAAgABAAAAAAAAABUAAgAAQAAAAAAAABTAAgAAQAAAAAAAABSAAgABAAAAAAAAABRAAgABAAAAAAAAABQAAgABAAAAAAAAABPAAgABAAAAAAAAABOAAgABAAAAAAAAABNAAgABAAAAAAAAABMAAgABAAAAAAAAABLAAgABAAAAAAAAABKAAgABAAAAAAAAABJAAgABAAAAAAAAABIAAgACQAAAAAAAABHAAgAAQAAAAAAAABGAAgAAQAAAAAAAABHAAkABAAAAAAAAABIAAkAAQAAAAAAAABJAAkAAQAAAAAAAABKAAkAAQAAAAAAAABLAAkABAAAAAAAAABMAAkAAQAAAAAAAABNAAkABAAAAAAAAABOAAkABAAAAAAAAABPAAkABAAAAAAAAABQAAkABAAAAAAAAABRAAkABAAAAAAAAABSAAkABAAAAAAAAABTAAkABAAAAAAAAABUAAkACQAAAAAAAABVAAkAAQAAAAAAAABWAAkABAAAAAAAAABXAAkABAAAAAAAAABYAAkABAAAAAAAAABZAAkABAAAAAAAAABFAAgABAAAAAAAAABEAAgABAAAAAAAAABpAAYABAAAAAAAAABqAAYABAAAAAAAAABrAAYABAAAAAAAAABsAAYABAAAAAAAAABtAAYABAAAAAAAAABuAAYABAAAAAAAAABvAAYABAAAAAAAAABwAAYABAAAAAAAAABxAAYABAAAAAAAAAByAAYABAAAAAAAAABzAAYABAAAAAAAAAB0AAYABAAAAAAAAAB1AAYABAAAAAAAAAB2AAYABAAAAAAAAAB3AAYABAAAAAAAAAB4AAYABAAAAAAAAABpAAcABAAAAAAAAABqAAcABAAAAAAAAABrAAcABAAAAAAAAABsAAgABAAAAAAAAABtAAgABAAAAAAAAABuAAgABAAAAAAAAABvAAkABAAAAAAAAABwAAkABAAAAAAAAABxAAkABAAAAAAAAAByAAkABAAAAAAAAABzAAkABAAAAAAAAAB0AAoABAAAAAAAAAB1AAoABAAAAAAAAAB2AAoABAAAAAAAAAB3AAoABAAAAAAAAAB4AAoABAAAAAAAAAB5AAsABAAAAAAAAAB6AAsABAAAAAAAAAB7AAsABAAAAAAAAAB8AAsABAAAAAAAAAB9AAsABAAAAAAAAAB+AAsABAAAAAAAAAB/AAsABAAAAAAAAACAAAsABAAAAAAAAACAAAoABAAAAAAAAACBAAkABAAAAAAAAACCAAkABAAAAAAAAACCAAgABAAAAAAAAACDAAgABAAAAAAAAACEAAcABAAAAAAAAACDAAcABAAAAAAAAACCAAcABAAAAAAAAACBAAcABAAAAAAAAACAAAcAAQAAAAAAAAB/AAcABAAAAAAAAAB+AAcABAAAAAAAAAB9AAcABAAAAAAAAAB8AAcABAAAAAAAAAB7AAcABAAAAAAAAAB6AAcABAAAAAAAAAB5AAcABAAAAAAAAAB4AAcABAAAAAAAAAB3AAcABAAAAAAAAAB2AAcABAAAAAAAAAB1AAcABAAAAAAAAAB0AAcAAQAAAAAAAABzAAcAAQAAAAAAAAByAAcAAQAAAAAAAABxAAcAAQAAAAAAAABwAAcAAQAAAAAAAABvAAcAAQAAAAAAAABuAAcAAQAAAAAAAABtAAcABAAAAAAAAABsAAcABAAAAAAAAAB5AAYABAAAAAAAAAB6AAYABAAAAAAAAAB7AAYABAAAAAAAAAB8AAYABAAAAAAAAAB9AAYABAAAAAAAAAB+AAYABAAAAAAAAAB/AAYABAAAAAAAAACAAAYABAAAAAAAAACBAAYABAAAAAAAAACCAAYABAAAAAAAAACDAAYABAAAAAAAAACEAAYABAAAAAAAAACFAAYABAAAAAAAAACFAAcABAAAAAAAAACBAAgABAAAAAAAAACAAAkABAAAAAAAAAB/AAkABAAAAAAAAAB+AAkABAAAAAAAAAB9AAkABAAAAAAAAAB8AAkABAAAAAAAAAB7AAkABAAAAAAAAAB6AAkAAQAAAAAAAAB5AAkAAQAAAAAAAAB4AAkABAAAAAAAAAB3AAkABAAAAAAAAAB2AAkABAAAAAAAAAB1AAkABAAAAAAAAAB0AAkABAAAAAAAAABwAAgABAAAAAAAAABvAAgABAAAAAAAAABxAAgABAAAAAAAAAByAAgABAAAAAAAAABzAAgABAAAAAAAAAB0AAgABAAAAAAAAAB1AAgAAQAAAAAAAAB2AAgAAQAAAAAAAAB3AAgAAQAAAAAAAAB4AAgAAQAAAAAAAAB5AAgAAQAAAAAAAAB6AAgACQAAAAAAAAB7AAgABAAAAAAAAAB8AAgABAAAAAAAAAB9AAgABAAAAAAAAAB+AAgABAAAAAAAAAB/AAgABAAAAAAAAACAAAgABAAAAAAAAAB+AAoABAAAAAAAAAB9AAoABAAAAAAAAAB8AAoABAAAAAAAAAB7AAoABAAAAAAAAAB6AAoABAAAAAAAAAB5AAoABAAAAAAAAAB/AAoABAAAAAAAAACGAAcAAQAAAAAAAACHAAcABAAAAAAAAACIAAgABAAAAAAAAACJAAgABAAAAAAAAACKAAgABAAAAAAAAACLAAgABAAAAAAAAACMAAgABAAAAAAAAACNAAkABAAAAAAAAACOAAkABAAAAAAAAACPAAkABAAAAAAAAACQAAkAAQAAAAAAAACRAAkABAAAAAAAAACSAAkABAAAAAAAAACRAAgABAAAAAAAAACQAAgACQAAAAAAAACPAAgAAQAAAAAAAACOAAgABAAAAAAAAACNAAgABAAAAAAAAACHAAgAAQAAAAAAAACGAAYAAgAAAAAAAACEAAkABAAAAAAAAACFAAkABAAAAAAAAACGAAkABAAAAAAAAACHAAkABAAAAAAAAACIAAkABAAAAAAAAACJAAoABAAAAAAAAACKAAoABAAAAAAAAACLAAoABAAAAAAAAACMAAoABAAAAAAAAACNAAoABAAAAAAAAACOAAsABAAAAAAAAACPAAsABAAAAAAAAACQAAsABAAAAAAAAACRAAsABAAAAAAAAACQAAoAAQAAAAAAAACMAAkABAAAAAAAAACLAAkABAAAAAAAAACKAAkABAAAAAAAAACJAAkABAAAAAAAAACFAAgABAAAAAAAAACEAAgABAAAAAAAAACGAAgAAQAAAAAAAACKAAcABAAAAAAAAACLAAcABAAAAAAAAACJAAcABAAAAAAAAACIAAcABAAAAAAAAACMAAcABAAAAAAAAACNAAcABAAAAAAAAACOAAcABAAAAAAAAACPAAcABAAAAAAAAACQAAcABAAAAAAAAACRAAcABAAAAAAAAACOAAoABAAAAAAAAACPAAoABAAAAAAAAACRAAoABAAAAAAAAACSAAcABAAAAAAAAACSAAgABAAAAAAAAAD//wYAEAAAAAAAAABCAAoABAAAAAAAAABDAAoABAAAAAAAAABEAAoABAAAAAAAAABFAAoABAAAAAAAAABGAAoABAAAAAAAAABHAAoABAAAAAAAAABIAAoABAAAAAAAAABcAAgABAAAAAAAAABbAAkABAAAAAAAAABaAAkABAAAAAAAAABnAAUAAgAAAAAAAABmAAUAAgAAAAAAAABlAAUAAgAAAAAAAABmAAYAAgAAAAAAAABnAAYAAgAAAAAAAABoAAYAAgAAAAAAAABnAAcAAgAAAAAAAABoAAcAAgAAAAAAAAByAAUADgAAAAAAAABzAAUADgAAAAAAAAB0AAUADgAAAAAAAAB1AAUADgAAAAAAAACSAAQACAAAAAAAAACSAAUABwAAAAAAAACSAAYADAAAAAAAAABYAAYADQAAAAAAAAAFAAUAFwAAAAAAAAA7AAUAFQAAAAAAAAA=")
+tile_set = SubResource("TileSet_yft5q")
+
+[node name="MovingSaw9" parent="." instance=ExtResource("41_qqcjh")]
+position = Vector2(22353, -516)
+physics_material_override = SubResource("PhysicsMaterial_wkgdv")
+constant_linear_velocity = Vector2(1, 1)
+delta_pos = Vector2(0, 500)
+time_to_end = 1.0
+time_to_start = 1.0
+
+[node name="MovingSaw10" parent="." instance=ExtResource("41_qqcjh")]
+position = Vector2(11755, 109)
+physics_material_override = SubResource("PhysicsMaterial_wkgdv")
+constant_linear_velocity = Vector2(1, 1)
+delta_pos = Vector2(1, 1)
+time_to_end = 1.0
+time_to_start = 1.0
+
+[node name="MovingSaw11" parent="." instance=ExtResource("41_qqcjh")]
+position = Vector2(29170, 169)
+physics_material_override = SubResource("PhysicsMaterial_wkgdv")
+constant_linear_velocity = Vector2(1, 1)
+delta_pos = Vector2(1, 1)
+time_to_end = 1.0
+time_to_start = 1.0
+
+[node name="MovingSaw12" parent="." instance=ExtResource("41_qqcjh")]
+position = Vector2(3797, -328)
+physics_material_override = SubResource("PhysicsMaterial_wkgdv")
+constant_linear_velocity = Vector2(0.7, 0.7)
+delta_pos = Vector2(500, 0)
+time_to_end = 0.5
+time_to_start = 0.5
+
+[node name="MovingPlatform" parent="." instance=ExtResource("42_nqv7o")]
+position = Vector2(10344, 431)
+
+[node name="DisappearingBlock" parent="." instance=ExtResource("43_t0v8p")]
+position = Vector2(12847, 1228)
+
+[node name="DisappearingBlock2" parent="." instance=ExtResource("43_t0v8p")]
+position = Vector2(5991, 1375)
+
+[node name="DisappearingBlock4" parent="." instance=ExtResource("43_t0v8p")]
+position = Vector2(6349, 1377)
+
+[node name="DisappearingBlock6" parent="." instance=ExtResource("43_t0v8p")]
+position = Vector2(6692, 1376)
+
+[node name="DisappearingBlock7" parent="." instance=ExtResource("43_t0v8p")]
+position = Vector2(6982, 1378)
+
+[node name="MovingPlatformSmall3" parent="." instance=ExtResource("44_leanw")]
+position = Vector2(9727, 206)
+delta_pos = Vector2(200, 0)
+time_to_end = 0.5
+time_to_start = 0.5
+
+[node name="MovingSaw2" parent="." instance=ExtResource("41_qqcjh")]
+position = Vector2(11227, 114)
+physics_material_override = SubResource("PhysicsMaterial_wkgdv")
+constant_linear_velocity = Vector2(1, 1)
+delta_pos = Vector2(1, 1)
+time_to_end = 1.0
+time_to_start = 1.0
+
+[node name="SpikeTrap4" parent="." instance=ExtResource("45_uk2ay")]
+position = Vector2(15284, -95)
+
+[node name="SpikeTrap3" parent="." instance=ExtResource("45_uk2ay")]
+position = Vector2(16088, -288)
+
+[node name="SpikeTrap2" parent="." instance=ExtResource("45_uk2ay")]
+position = Vector2(17078, -495)
+
+[node name="SpikeTrap" parent="." instance=ExtResource("45_uk2ay")]
+position = Vector2(18088, -693)
+
+[node name="MovingPlatformSmall" parent="." instance=ExtResource("44_leanw")]
+position = Vector2(11684, 8)
+delta_pos = Vector2(200, 0)
+time_to_end = 1.0
+time_to_start = 1.0
+
+[node name="MovingPlatformSmall2" parent="." instance=ExtResource("44_leanw")]
+position = Vector2(10212, -71)
+delta_pos = Vector2(400, 0)
+time_to_end = 0.6
+time_to_start = 0.6
+
+[node name="FallingRock" parent="." instance=ExtResource("46_j882y")]
+position = Vector2(5158, -526)
+delta_pos = Vector2(0, 650)
+time_to_end = 0.7
+time_to_start = 0.7
+
+[node name="DeathGround" parent="." instance=ExtResource("47_k77c3")]
+position = Vector2(8278, 3456)
+
+[node name="MovingSaw6" parent="." instance=ExtResource("41_qqcjh")]
+position = Vector2(1503, -563)
+delta_pos = Vector2(1000, 0)
+time_to_end = 1.0
+time_to_start = 1.0
+
+[connection signal="player_entered_area" from="SignalBusReceiver" to="." method="_on_player_entered_area"]
