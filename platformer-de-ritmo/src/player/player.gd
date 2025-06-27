@@ -22,6 +22,8 @@ var coyote_buffer
 var is_moving
 var can_jump
 var is_in_combat: bool
+var game_over_scene = preload("res://src/obstacles/after_death.tscn")
+	 
 
 var attacks_dict = {
 	"player_attack_up": ["up_arrow", "jump_attack"],
@@ -159,8 +161,13 @@ func _on_player_was_damaged() -> void:
 
 func die():
 	player_animations.play("death")
+	await player_animations.animation_finished
+	get_tree().current_scene.add_child(game_over_scene.instantiate())
+	get_tree().paused = true 
 	if _fisished_dying:
-		get_tree().change_scene_to_file("res://test_death.tscn")
+		get_tree().current_scene.add_child(game_over_scene.instantiate())
+
+
 
 static func get_player(scene_tree: SceneTree):
 	return scene_tree.get_first_node_in_group(PLAYER_GROUP)
