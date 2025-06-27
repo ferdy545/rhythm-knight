@@ -1,6 +1,6 @@
 [gd_scene load_steps=70 format=4 uid="uid://biwx1p81c0qil"]
 
-[ext_resource type="Script" uid="uid://c6o4fo6kfg2hg" path="res://PlayerLevel.gd" id="1_tcanr"]
+[ext_resource type="Script" path="res://PlayerLevel.gd" id="1_tcanr"]
 [ext_resource type="PackedScene" uid="uid://ddrf1mul53nnd" path="res://src/player/player.tscn" id="2_2n3av"]
 [ext_resource type="Script" uid="uid://bge2yf5m3x8ow" path="res://src/obstacles/moving_saw.gd" id="2_f5pck"]
 [ext_resource type="Texture2D" uid="uid://ca3bsiev8nuhb" path="res://assets/background/outerspace.png" id="3_xbli7"]
@@ -34,8 +34,8 @@
 [ext_resource type="Texture2D" uid="uid://dov2hew6cup1a" path="res://assets/tiles/DoorUp.png" id="28_bwo7k"]
 [ext_resource type="Texture2D" uid="uid://dcm3ob0ef252x" path="res://assets/tiles/Gray5.png" id="29_scd4n"]
 [ext_resource type="PackedScene" uid="uid://dududnjoyvf1" path="res://src/obstacles/moving_saw.tscn" id="34_nhkhe"]
-[ext_resource type="PackedScene" uid="uid://dxur104vkmqy8" path="res://src/obstacles/moving_platform.tscn" id="35_nhkhe"]
-[ext_resource type="PackedScene" uid="uid://d4esrj583r3mq" path="res://src/obstacles/disappearing_block.tscn" id="36_auy5n"]
+[ext_resource type="PackedScene" uid="uid://c6wrkkkynee7y" path="res://src/obstacles/moving_platform.tscn" id="35_nhkhe"]
+[ext_resource type="PackedScene" uid="uid://n77xct5hpmi0" path="res://src/obstacles/disappearing_block.tscn" id="36_auy5n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8uh7m"]
 size = Vector2(1150, 20)

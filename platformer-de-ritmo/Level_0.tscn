@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=4 uid="uid://c5o641ypqssfb"]
+[gd_scene load_steps=94 format=4 uid="uid://c5o641ypqssfb"]
 
 [ext_resource type="Script" uid="uid://kwq2scek371a" path="res://test_combat.gd" id="1_c1n6l"]
 [ext_resource type="Script" uid="uid://bge2yf5m3x8ow" path="res://src/obstacles/moving_saw.gd" id="2_43c05"]
@@ -41,12 +41,13 @@
 [ext_resource type="Texture2D" uid="uid://dov2hew6cup1a" path="res://assets/tiles/DoorUp.png" id="39_5df8h"]
 [ext_resource type="Texture2D" uid="uid://dcm3ob0ef252x" path="res://assets/tiles/Gray5.png" id="40_c2se3"]
 [ext_resource type="PackedScene" uid="uid://dududnjoyvf1" path="res://src/obstacles/moving_saw.tscn" id="41_qqcjh"]
-[ext_resource type="PackedScene" uid="uid://dxur104vkmqy8" path="res://src/obstacles/moving_platform.tscn" id="42_nqv7o"]
-[ext_resource type="PackedScene" uid="uid://d4esrj583r3mq" path="res://src/obstacles/disappearing_block.tscn" id="43_t0v8p"]
+[ext_resource type="PackedScene" uid="uid://c6wrkkkynee7y" path="res://src/obstacles/moving_platform.tscn" id="42_nqv7o"]
+[ext_resource type="PackedScene" uid="uid://n77xct5hpmi0" path="res://src/obstacles/disappearing_block.tscn" id="43_t0v8p"]
 [ext_resource type="PackedScene" uid="uid://be75wmqp1h6c4" path="res://src/obstacles/Moving_Plataform2.tscn" id="44_leanw"]
 [ext_resource type="PackedScene" uid="uid://d1rae712l27bc" path="res://src/obstacles/Spike_Trap.tscn" id="45_uk2ay"]
 [ext_resource type="PackedScene" uid="uid://fc5bhausid1c" path="res://src/obstacles/FallingRock.tscn" id="46_j882y"]
 [ext_resource type="PackedScene" uid="uid://oarkirkluspx" path="res://src/obstacles/DeathArea.tscn" id="47_k77c3"]
+[ext_resource type="PackedScene" uid="uid://n4m1ilpjf1g8" path="res://src/obstacles/after_death.tscn" id="48_43c05"]
 
 [sub_resource type="Animation" id="Animation_8rlkd"]
 length = 0.001
@@ -471,8 +472,9 @@ script = ExtResource("1_c1n6l")
 gravity_scale = 0.0
 script = ExtResource("2_43c05")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("3_pfde7")]
+[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("game_over_screen") instance=ExtResource("3_pfde7")]
 position = Vector2(451, 775)
+game_over_screen = NodePath("../GameOverScreen")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -690,4 +692,11 @@ delta_pos = Vector2(1000, 0)
 time_to_end = 1.0
 time_to_start = 1.0
 
+[node name="GameOverScreen" parent="." instance=ExtResource("48_43c05")]
+
+[node name="CanvasLayer" parent="GameOverScreen" index="0"]
+visible = false
+
 [connection signal="player_entered_area" from="SignalBusReceiver" to="." method="_on_player_entered_area"]
+
+[editable path="GameOverScreen"]

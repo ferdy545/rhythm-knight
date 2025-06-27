@@ -19,10 +19,10 @@ var coyote_buffer
 @export var _is_attacking := false
 @export var _is_parrying := false 
 @export var _is_falling := false
+@export var game_over_screen : Node 
 var is_moving
 var can_jump
 var is_in_combat: bool
-var game_over_scene = preload("res://src/obstacles/after_death.tscn")
 	 
 
 var attacks_dict = {
@@ -162,10 +162,8 @@ func _on_player_was_damaged() -> void:
 func die():
 	player_animations.play("death")
 	await player_animations.animation_finished
-	get_tree().current_scene.add_child(game_over_scene.instantiate())
+	game_over_screen.get_child(0).visible = true
 	get_tree().paused = true 
-	if _fisished_dying:
-		get_tree().current_scene.add_child(game_over_scene.instantiate())
 
 
 

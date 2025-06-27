@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://n4m1ilpjf1g8"]
+[gd_scene load_steps=3 format=3 uid="uid://n4m1ilpjf1g8"]
 
 [ext_resource type="Script" uid="uid://cxbw5h4ia4c2d" path="res://src/obstacles/after_death.gd" id="1_8nmux"]
+[ext_resource type="PackedScene" uid="uid://c5o641ypqssfb" path="res://Level_0.tscn" id="2_bqfct"]
 
 [node name="GameOverScreen" type="Control"]
 layout_mode = 3
@@ -10,6 +11,7 @@ offset_top = -82.0
 offset_right = 122.0
 offset_bottom = 56.0
 script = ExtResource("1_8nmux")
+level_scene = ExtResource("2_bqfct")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

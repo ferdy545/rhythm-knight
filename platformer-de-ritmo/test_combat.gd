@@ -34,6 +34,7 @@ var rhythm
 	
 
 func _ready() -> void:
+	SceneManager.current_scene_root = self
 	player = Player.get_player(get_tree())	
 
 
