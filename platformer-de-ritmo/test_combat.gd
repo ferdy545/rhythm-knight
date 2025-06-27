@@ -11,6 +11,8 @@ extends Node2D
 @onready var signal_bus_sender : SignalBusSender = $SignalBusSender
 @onready var signal_bus_receiver : SignalBusReceiver = $SignalBusReceiver
 @onready var player_sprite : Sprite2D = $CharacterBody2D/Sprite2D
+@export var you_win_screen : Node 
+
 
 @export var _beat = false
 @export var _rhythm = false
@@ -207,3 +209,9 @@ func enemy_killed():
 func _on_signal_bus_receiver_beat_changed() -> void:
 	if in_show_sequence and not rhythms.is_playing():
 		rhythms.play(rhythm[0]) # rhythm[0] contains the rhythm itself
+
+		
+func _on_player_wins_body_entered(body: Node2D) -> void:
+	if body is Player:
+		you_win_screen.get_child(0).visible = true
+		get_tree().paused = true 

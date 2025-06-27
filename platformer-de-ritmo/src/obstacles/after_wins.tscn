@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://c478tqj1akmf"]
+
+[ext_resource type="Script" uid="uid://cqybu4h6dhqu6" path="res://src/obstacles/after_wins.gd" id="1_2aeee"]
+
+[node name="YouWinScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_2aeee")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 439.0
+offset_top = 247.0
+offset_right = 722.0
+offset_bottom = 319.0
+theme_override_font_sizes/font_size = 52
+text = "You Win!!"
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+process_mode = 3
+offset_left = 452.0
+offset_top = 341.0
+offset_right = 702.0
+offset_bottom = 423.0
+text = "Reset Level"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

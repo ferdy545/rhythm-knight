@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=4 uid="uid://c5o641ypqssfb"]
+[gd_scene load_steps=96 format=4 uid="uid://c5o641ypqssfb"]
 
 [ext_resource type="Script" uid="uid://kwq2scek371a" path="res://test_combat.gd" id="1_c1n6l"]
 [ext_resource type="Script" uid="uid://bge2yf5m3x8ow" path="res://src/obstacles/moving_saw.gd" id="2_43c05"]
@@ -41,13 +41,14 @@
 [ext_resource type="Texture2D" uid="uid://dov2hew6cup1a" path="res://assets/tiles/DoorUp.png" id="39_5df8h"]
 [ext_resource type="Texture2D" uid="uid://dcm3ob0ef252x" path="res://assets/tiles/Gray5.png" id="40_c2se3"]
 [ext_resource type="PackedScene" uid="uid://dududnjoyvf1" path="res://src/obstacles/moving_saw.tscn" id="41_qqcjh"]
-[ext_resource type="PackedScene" uid="uid://c6wrkkkynee7y" path="res://src/obstacles/moving_platform.tscn" id="42_nqv7o"]
 [ext_resource type="PackedScene" uid="uid://n77xct5hpmi0" path="res://src/obstacles/disappearing_block.tscn" id="43_t0v8p"]
 [ext_resource type="PackedScene" uid="uid://be75wmqp1h6c4" path="res://src/obstacles/Moving_Plataform2.tscn" id="44_leanw"]
 [ext_resource type="PackedScene" uid="uid://d1rae712l27bc" path="res://src/obstacles/Spike_Trap.tscn" id="45_uk2ay"]
 [ext_resource type="PackedScene" uid="uid://fc5bhausid1c" path="res://src/obstacles/FallingRock.tscn" id="46_j882y"]
 [ext_resource type="PackedScene" uid="uid://oarkirkluspx" path="res://src/obstacles/DeathArea.tscn" id="47_k77c3"]
-[ext_resource type="PackedScene" uid="uid://n4m1ilpjf1g8" path="res://src/obstacles/after_death.tscn" id="48_43c05"]
+[ext_resource type="PackedScene" uid="uid://c6wrkkkynee7y" path="res://src/obstacles/moving_platform.tscn" id="48_43c05"]
+[ext_resource type="PackedScene" uid="uid://n4m1ilpjf1g8" path="res://src/obstacles/after_death.tscn" id="48_pfde7"]
+[ext_resource type="PackedScene" uid="uid://c478tqj1akmf" path="res://src/obstacles/after_wins.tscn" id="49_pfde7"]
 
 [sub_resource type="Animation" id="Animation_8rlkd"]
 length = 0.001
@@ -465,8 +466,12 @@ sources/24 = SubResource("TileSetAtlasSource_6pylf")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wkgdv"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43c05"]
+size = Vector2(258.5, 767.5)
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("you_win_screen")]
 script = ExtResource("1_c1n6l")
+you_win_screen = NodePath("YouWinScreen")
 
 [node name="Area2D" type="RigidBody2D" parent="."]
 gravity_scale = 0.0
@@ -621,7 +626,7 @@ delta_pos = Vector2(500, 0)
 time_to_end = 0.5
 time_to_start = 0.5
 
-[node name="MovingPlatform" parent="." instance=ExtResource("42_nqv7o")]
+[node name="MovingPlatform" parent="." instance=ExtResource("48_43c05")]
 position = Vector2(10344, 431)
 
 [node name="DisappearingBlock" parent="." instance=ExtResource("43_t0v8p")]
@@ -692,11 +697,24 @@ delta_pos = Vector2(1000, 0)
 time_to_end = 1.0
 time_to_start = 1.0
 
-[node name="GameOverScreen" parent="." instance=ExtResource("48_43c05")]
+[node name="GameOverScreen" parent="." instance=ExtResource("48_pfde7")]
 
 [node name="CanvasLayer" parent="GameOverScreen" index="0"]
 visible = false
 
+[node name="PlayerWins" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerWins"]
+position = Vector2(28956.3, 902.75)
+shape = SubResource("RectangleShape2D_43c05")
+
+[node name="YouWinScreen" parent="." instance=ExtResource("49_pfde7")]
+
+[node name="CanvasLayer" parent="YouWinScreen" index="0"]
+visible = false
+
 [connection signal="player_entered_area" from="SignalBusReceiver" to="." method="_on_player_entered_area"]
+[connection signal="body_entered" from="PlayerWins" to="." method="_on_player_wins_body_entered"]
 
 [editable path="GameOverScreen"]
+[editable path="YouWinScreen"]
