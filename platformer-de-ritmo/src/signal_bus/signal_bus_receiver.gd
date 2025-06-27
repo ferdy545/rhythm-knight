@@ -8,6 +8,7 @@ signal player_entered_area
 signal player_was_damaged
 signal enemy_attack
 signal enemy_was_killed
+signal beat_changed
 
 
 func _enter_tree() -> void:
