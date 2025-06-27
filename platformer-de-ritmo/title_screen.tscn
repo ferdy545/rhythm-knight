@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3 uid="uid://co5rxogvph2gm"]
+
+[ext_resource type="Texture2D" uid="uid://buam0g2h1ngs8" path="res://assets/gui/rectangular_button.png" id="1_ak2if"]
+[ext_resource type="Script" uid="uid://e1r3k3fxa3tu" path="res://title_screen.gd" id="1_ig5kc"]
+[ext_resource type="Texture2D" uid="uid://dife33sp8kjiy" path="res://assets/gui/menu_background.png" id="2_05l2w"]
+[ext_resource type="Texture2D" uid="uid://b6143wnr85yhy" path="res://assets/gui/game_title.png" id="2_ig5kc"]
+
+[sub_resource type="Theme" id="Theme_05l2w"]
+default_font_size = 50
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ig5kc")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_05l2w")
+
+[node name="Settings" type="Button" parent="Background"]
+offset_left = -388.0
+offset_top = 200.0
+offset_right = 120.0
+offset_bottom = 458.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(250, 125)
+theme = SubResource("Theme_05l2w")
+text = "SETTINGS
+"
+icon = ExtResource("1_ak2if")
+flat = true
+icon_alignment = 1
+
+[node name="Quit" type="Button" parent="Background"]
+offset_left = -88.0
+offset_top = 200.0
+offset_right = 420.0
+offset_bottom = 458.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(250, 125)
+theme = SubResource("Theme_05l2w")
+text = "QUIT
+"
+icon = ExtResource("1_ak2if")
+flat = true
+icon_alignment = 1
+
+[node name="Credits" type="Button" parent="Background"]
+offset_left = -88.0
+offset_top = 50.0
+offset_right = 420.0
+offset_bottom = 308.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(250, 125)
+theme = SubResource("Theme_05l2w")
+text = "CREDITS
+"
+icon = ExtResource("1_ak2if")
+flat = true
+icon_alignment = 1
+
+[node name="Play" type="Button" parent="Background"]
+offset_left = -388.0
+offset_top = 50.0
+offset_right = 120.0
+offset_bottom = 308.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(250, 125)
+theme = SubResource("Theme_05l2w")
+text = "PLAY
+"
+icon = ExtResource("1_ak2if")
+flat = true
+icon_alignment = 1
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(576, 180)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_ig5kc")
+
+[connection signal="pressed" from="Background/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Background/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Background/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Background/Play" to="." method="_on_play_pressed"]
