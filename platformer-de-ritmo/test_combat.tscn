@@ -376,4 +376,5 @@ libraries = {
 stream = ExtResource("12_tpf0o")
 bus = &"Music"
 
+[connection signal="beat_changed" from="SignalBusReceiver" to="." method="_on_signal_bus_receiver_beat_changed"]
 [connection signal="player_entered_area" from="SignalBusReceiver" to="." method="_on_player_entered_area"]

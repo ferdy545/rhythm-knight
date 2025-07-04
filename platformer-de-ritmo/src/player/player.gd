@@ -41,7 +41,7 @@ func _init() -> void:
 # Process animations
 func _process(_delta):
 	# Handle player death
-	if life <= 0:
+	if life <= 0 and is_on_floor(): 
 		die()
 			
 	# If player life is more than zero:	
@@ -109,8 +109,8 @@ func _physics_process(delta: float) -> void:
 			jump_buffer = false
 		coyote_buffer = true
 	
-	# Lock player's movement if in combat mode
-	if not is_in_combat:
+	# Lock player's movement if in combat mode or died
+	if not is_in_combat or life <= 0:
 		# Handle jump
 		if Input.is_action_just_pressed("player_jump"):
 			# If on floor, jump normally
@@ -159,14 +159,14 @@ func _on_player_was_damaged() -> void:
 	life -= 1;
 	player_animations.stop()
 
+
 func die():
+	life = 0
 	player_animations.play("death")
 	await player_animations.animation_finished
 	game_over_screen.get_child(0).visible = true
-	get_tree().paused = true 
-
+	get_tree().paused = true
 
 
 static func get_player(scene_tree: SceneTree):
 	return scene_tree.get_first_node_in_group(PLAYER_GROUP)
-	

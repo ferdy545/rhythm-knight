@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://n4m1ilpjf1g8"]
 
 [ext_resource type="Script" uid="uid://cxbw5h4ia4c2d" path="res://src/obstacles/after_death.gd" id="1_8nmux"]
-[ext_resource type="PackedScene" uid="uid://c5o641ypqssfb" path="res://Level_0.tscn" id="2_bqfct"]
+[ext_resource type="PackedScene" uid="uid://co5rxogvph2gm" path="res://title_screen.tscn" id="2_bqfct"]
 
 [node name="GameOverScreen" type="Control"]
 layout_mode = 3

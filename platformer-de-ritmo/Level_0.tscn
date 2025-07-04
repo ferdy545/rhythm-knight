@@ -47,7 +47,7 @@
 [ext_resource type="PackedScene" uid="uid://fc5bhausid1c" path="res://src/obstacles/FallingRock.tscn" id="46_j882y"]
 [ext_resource type="PackedScene" uid="uid://oarkirkluspx" path="res://src/obstacles/DeathArea.tscn" id="47_k77c3"]
 [ext_resource type="PackedScene" uid="uid://c6wrkkkynee7y" path="res://src/obstacles/moving_platform.tscn" id="48_43c05"]
-[ext_resource type="PackedScene" uid="uid://n4m1ilpjf1g8" path="res://src/obstacles/after_death.tscn" id="48_pfde7"]
+[ext_resource type="PackedScene" uid="uid://n4m1ilpjf1g8" path="res://src/obstacles/after_death.tscn" id="49_h48pw"]
 [ext_resource type="PackedScene" uid="uid://c478tqj1akmf" path="res://src/obstacles/after_wins.tscn" id="49_pfde7"]
 
 [sub_resource type="Animation" id="Animation_8rlkd"]
@@ -540,10 +540,13 @@ texture = ExtResource("10_mn7d4")
 centered = false
 
 [node name="Enemy1" parent="." instance=ExtResource("11_xihk0")]
-position = Vector2(23988, 901)
+position = Vector2(-207, 826)
 
 [node name="Enemy2" parent="." instance=ExtResource("11_xihk0")]
-position = Vector2(-207, 826)
+position = Vector2(14055, 816)
+
+[node name="Enemy3" parent="." instance=ExtResource("11_xihk0")]
+position = Vector2(26064, 603)
 
 [node name="SignalBusSender" type="Node" parent="."]
 script = ExtResource("12_wusj0")
@@ -697,11 +700,6 @@ delta_pos = Vector2(1000, 0)
 time_to_end = 1.0
 time_to_start = 1.0
 
-[node name="GameOverScreen" parent="." instance=ExtResource("48_pfde7")]
-
-[node name="CanvasLayer" parent="GameOverScreen" index="0"]
-visible = false
-
 [node name="PlayerWins" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerWins"]
@@ -713,8 +711,14 @@ shape = SubResource("RectangleShape2D_43c05")
 [node name="CanvasLayer" parent="YouWinScreen" index="0"]
 visible = false
 
+[node name="GameOverScreen" parent="." instance=ExtResource("49_h48pw")]
+
+[node name="CanvasLayer" parent="GameOverScreen" index="0"]
+visible = false
+
+[connection signal="beat_changed" from="SignalBusReceiver" to="." method="_on_signal_bus_receiver_beat_changed"]
 [connection signal="player_entered_area" from="SignalBusReceiver" to="." method="_on_player_entered_area"]
 [connection signal="body_entered" from="PlayerWins" to="." method="_on_player_wins_body_entered"]
 
-[editable path="GameOverScreen"]
 [editable path="YouWinScreen"]
+[editable path="GameOverScreen"]

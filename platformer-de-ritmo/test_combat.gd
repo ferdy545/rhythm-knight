@@ -205,13 +205,13 @@ func enemy_attack():
 func enemy_killed():
 	signal_bus_sender.send_enemy_was_killed(enemy)
 
-
-func _on_signal_bus_receiver_beat_changed() -> void:
-	if in_show_sequence and not rhythms.is_playing():
-		rhythms.play(rhythm[0]) # rhythm[0] contains the rhythm itself
-
 		
 func _on_player_wins_body_entered(body: Node2D) -> void:
 	if body is Player:
 		you_win_screen.get_child(0).visible = true
 		get_tree().paused = true 
+
+
+func _on_signal_bus_receiver_beat_changed() -> void:
+	if in_show_sequence and not rhythms.is_playing():
+		rhythms.play(rhythm[0]) # rhythm[0] contains the rhythm itself
