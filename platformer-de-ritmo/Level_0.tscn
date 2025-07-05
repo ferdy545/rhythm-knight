@@ -568,15 +568,8 @@ target_path = NodePath("../CharacterBody2D")
 visible = false
 interval_radius = 1
 
-[node name="TestLifeLabel" type="Label" parent="Camera"]
-offset_left = -1100.0
-offset_top = -600.0
-offset_right = -844.0
-offset_bottom = -344.0
-theme_override_font_sizes/font_size = 100
-
 [node name="Arrow" parent="Camera" instance=ExtResource("17_qjl1h")]
-position = Vector2(0, -400)
+position = Vector2(954, 450)
 
 [node name="Rhythms" type="AnimationPlayer" parent="."]
 libraries = {
@@ -715,6 +708,14 @@ visible = false
 
 [node name="CanvasLayer" parent="GameOverScreen" index="0"]
 visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LifeLabel" type="Label" parent="CanvasLayer"]
+offset_right = 256.0
+offset_bottom = 256.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 100
 
 [connection signal="beat_changed" from="SignalBusReceiver" to="." method="_on_signal_bus_receiver_beat_changed"]
 [connection signal="player_entered_area" from="SignalBusReceiver" to="." method="_on_player_entered_area"]

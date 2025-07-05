@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var camera = $Camera
 @onready var music = $Music
 @onready var atk_good = $Soundfx/AttackGood
 @onready var atk_wrong = $Soundfx/AttackWrong
@@ -25,6 +26,8 @@ var rhythms_list = [
 	["rhythm6", 4], ["rhythm7", 3], ["rhythm8", 3], ["rhythm9", 4], ["rhythm10", 6]
 ]
 
+var arrow_instance
+var arrow_pos = 0
 var in_show_sequence = false
 var in_combat_mode = false
 var attempted = false
@@ -42,7 +45,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	$Camera/TestLifeLabel.text = str(player.life)
+	$CanvasLayer/LifeLabel.text = "❤ " + str(player.life)
 
 	if player.life > 0:
 		show_sequence()
@@ -81,24 +84,22 @@ func _on_player_entered_area(enemy) -> void:
 func show_sequence():
 	# Keep showing the sequence until it reaches the last element
 	if in_show_sequence and current_beat < rhythm[1]: # rhythm[1] contains number of beats
-		attack = atk_sequence[current_beat]
-		change_sprite((player.attacks_dict[attack])[0]) # contains the arrow sprite's name
-		arrow_sprite.visible = true
-		
+		if current_beat == -1:
+			arrow_pos = 0
+			
 		# If within beat interval
 		if _rhythm:
-			if beat_start:
-				return
-				
-			# If it's not a beat start, prepare to show the next one
-			atk_cyberbeast.play()
-			current_beat += 1		
-			arrow_sprite.visible = false
-			beat_start = true
+			if not beat_start:
+				atk_cyberbeast.play()
+				attack = atk_sequence[current_beat + 1]
+				# (player.attacks_dict[attack])[0] contains the arrow sprite's name
+				show_sprite((player.attacks_dict[attack])[0], arrow_pos)
+				arrow_pos = arrow_pos + 1
+				current_beat += 1		
+				beat_start = true
 			
 		# If not within the beat interval
 		else:
-			arrow_sprite.visible = false
 			beat_start = false
 			
 			if current_beat == rhythm[1] - 1:
@@ -111,7 +112,8 @@ func show_sequence():
 			current_beat = -1
 			in_show_sequence = false
 			in_combat_mode = true
-			change_sprite("base_arrow")
+			#arrow_sprite = show_sprite("base_arrow", arrow_pos)
+			show_rhythm_cue()
 	
 
 func start_combat():
@@ -164,6 +166,12 @@ func start_combat():
 	
 	# If finished combat
 	else:
+		if not in_show_sequence:
+			# Delete all arrows before showing them again
+			for child in $".".get_children():
+				if child.get_class() == "Sprite2D":
+					child.queue_free()
+				
 		if killed_enemy:
 			if current_beat != -1 and not in_show_sequence:
 				in_combat_mode = false
@@ -188,9 +196,19 @@ func reshow_sequence():
 	current_beat = -1
 	
 
-func change_sprite(arrow):
-	# Update the arrow sprite texture according to the attack sequence
-	var texture = load('res://assets/rhythm_arrows/%s.png' %[arrow])
+func show_sprite(arrow, pos):
+	# Instantiate a sprite for the arrow, load the texture and update the position where it is shown
+	arrow_instance = Sprite2D.new()
+	arrow_instance.texture = load('res://assets/rhythm_arrows/%s.png' %[arrow])
+	$".".add_child(arrow_instance)
+	var position = Vector2(camera.position.x - 954, camera.position.y + 450)
+	arrow_instance.set_position(position + Vector2(pos*256, 0))
+	#arrow_instance.visible = true
+	return arrow_instance
+	
+	
+func show_rhythm_cue():
+	var texture = load('res://assets/rhythm_arrows/base_arrow.png')
 	arrow_sprite.texture = texture
 
 

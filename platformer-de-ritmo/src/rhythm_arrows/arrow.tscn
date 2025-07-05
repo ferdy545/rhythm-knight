@@ -1,3 +1,4 @@
 [gd_scene format=3 uid="uid://sqlbfktgqev6"]
 
 [node name="Arrow" type="Sprite2D"]
+z_index = 1

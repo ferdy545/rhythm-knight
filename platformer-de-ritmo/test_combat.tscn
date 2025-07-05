@@ -360,7 +360,7 @@ offset_bottom = -344.0
 theme_override_font_sizes/font_size = 100
 
 [node name="Arrow" parent="Camera" instance=ExtResource("16_jtosv")]
-position = Vector2(0, -400)
+position = Vector2(954, 450)
 
 [node name="Rhythms" type="AnimationPlayer" parent="."]
 libraries = {
