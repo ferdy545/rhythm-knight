@@ -26,7 +26,7 @@ offset_left = 452.0
 offset_top = 341.0
 offset_right = 702.0
 offset_bottom = 423.0
-text = "Reset Level"
+text = "Return to Title Screen"
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
