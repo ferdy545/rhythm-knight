@@ -11,13 +11,15 @@ config_version=5
 [application]
 
 config/name="Platformer de Ritmo"
-run/main_scene="uid://biwx1p81c0qil"
+run/main_scene="uid://co5rxogvph2gm"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 SignalBus="*res://src/signal_bus/signal_bus.gd"
+SceneManager="*res://utils/SceneManager.tscn"
+BeatManager="*res://src/soundtrack/beat_manager.tscn"
 
 [input]
 

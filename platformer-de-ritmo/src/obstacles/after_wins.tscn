@@ -1,17 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://n4m1ilpjf1g8"]
+[gd_scene load_steps=2 format=3 uid="uid://c478tqj1akmf"]
 
-[ext_resource type="Script" uid="uid://cxbw5h4ia4c2d" path="res://src/obstacles/after_death.gd" id="1_8nmux"]
-[ext_resource type="PackedScene" uid="uid://co5rxogvph2gm" path="res://title_screen.tscn" id="2_bqfct"]
+[ext_resource type="Script" uid="uid://cqybu4h6dhqu6" path="res://src/obstacles/after_wins.gd" id="1_2aeee"]
 
-[node name="GameOverScreen" type="Control"]
+[node name="YouWinScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -83.0
-offset_top = -82.0
-offset_right = 122.0
-offset_bottom = 56.0
-script = ExtResource("1_8nmux")
-level_scene = ExtResource("2_bqfct")
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_2aeee")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -21,7 +17,8 @@ offset_top = 247.0
 offset_right = 722.0
 offset_bottom = 319.0
 theme_override_font_sizes/font_size = 52
-text = "Game Over"
+text = "You Win!!"
+metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="CanvasLayer"]
 process_mode = 3
@@ -29,6 +26,7 @@ offset_left = 452.0
 offset_top = 341.0
 offset_right = 702.0
 offset_bottom = 423.0
-text = "Reset Level"
+text = "Return to Title Screen"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

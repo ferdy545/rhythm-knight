@@ -41,8 +41,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func on_body_entered_area(body: Node2D) -> void:
-	if body is Player:
+func on_body_entered_area(body) -> void:		
+	if body is Player and not _enemy_was_killed and enemy_animations.current_animation == "idle":
 		signal_bus_sender.send_player_entered_area(self)
 		enemy_animations.play("detect")
 

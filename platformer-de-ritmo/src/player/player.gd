@@ -1,6 +1,13 @@
 extends CharacterBody2D
 class_name Player
 
+@onready var player_sprite = $Sprite2D
+@onready var knight_walk1 = $Soundfx/KnightWalk1
+@onready var knight_walk2 = $Soundfx/KnightWalk2
+@onready var knight_fall = $Soundfx/KnightFall
+@onready var knight_jump = $Soundfx/KnightJump
+@onready var knight_death = $Soundfx/KnightDeath
+
 @export var life = 10
 
 const SPEED = 750.0
@@ -19,10 +26,10 @@ var coyote_buffer
 @export var _is_attacking := false
 @export var _is_parrying := false 
 @export var _is_falling := false
+@export var game_over_screen : Node 
 var is_moving
 var can_jump
 var is_in_combat: bool
-var game_over_scene = preload("res://src/obstacles/after_death.tscn")
 	 
 
 var attacks_dict = {
@@ -41,7 +48,7 @@ func _init() -> void:
 # Process animations
 func _process(_delta):
 	# Handle player death
-	if life <= 0:
+	if life <= 0: 
 		die()
 			
 	# If player life is more than zero:	
@@ -57,11 +64,18 @@ func _process(_delta):
 				if is_on_floor():
 					can_jump = true
 					if _is_falling:
+						if not knight_fall.playing:
+							knight_fall.play()
 						player_animations.play("fall")
 					else:
 						is_moving = Input.is_action_pressed("player_left") or Input.is_action_pressed("player_right")
 						if is_moving and velocity.x != 0:
 							player_animations.play("walk")
+							if not knight_walk1.playing:
+								knight_walk1.play()
+							if knight_walk1.get_playback_position() >= 0.5:
+								if not knight_walk2.playing:
+									knight_walk2.play()
 						else:
 							player_animations.play("idle")
 				# If not on floor, player is falling
@@ -109,8 +123,8 @@ func _physics_process(delta: float) -> void:
 			jump_buffer = false
 		coyote_buffer = true
 	
-	# Lock player's movement if in combat mode
-	if not is_in_combat:
+	# Lock player's movement if in combat mode or died
+	if not is_in_combat and life > 0:
 		# Handle jump
 		if Input.is_action_just_pressed("player_jump"):
 			# If on floor, jump normally
@@ -140,6 +154,7 @@ func _physics_process(delta: float) -> void:
 	
 func jump() -> void:
 	velocity.y = JUMP_VELOCITY
+	knight_jump.play()
 		
 	
 func jump_buffer_timeout() -> void:
@@ -158,17 +173,20 @@ func _on_player_was_damaged() -> void:
 	_is_getting_damaged = true
 	life -= 1;
 	player_animations.stop()
+	player_sprite.modulate = Color(1, 0, 0)
+	await player_animations.animation_finished
+	player_sprite.modulate = Color(1, 1, 1)	
+
 
 func die():
+	life = 0
+	if not knight_death.playing:
+		knight_death.play(0.25)
 	player_animations.play("death")
 	await player_animations.animation_finished
-	get_tree().current_scene.add_child(game_over_scene.instantiate())
-	get_tree().paused = true 
-	if _fisished_dying:
-		get_tree().current_scene.add_child(game_over_scene.instantiate())
-
+	game_over_screen.get_child(0).visible = true
+	get_tree().paused = true
 
 
 static func get_player(scene_tree: SceneTree):
 	return scene_tree.get_first_node_in_group(PLAYER_GROUP)
-	
