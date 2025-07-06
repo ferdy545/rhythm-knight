@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var camera = $Camera
 @onready var music = $Music
+@onready var enemy_detect = $Soundfx/EnemyDetect
+@onready var enemy_death = $Soundfx/EnemyDeath
 @onready var atk_good = $Soundfx/AttackGood
 @onready var atk_wrong = $Soundfx/AttackWrong
 @onready var atk_miss = $Soundfx/AttackMiss
@@ -53,6 +55,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_player_entered_area(enemy) -> void:
+	enemy_detect.play()
 	# Preparation to start combat mode, starting with showing the sequence
 	player.is_in_combat = true
 	enemy.is_in_combat = true
@@ -154,7 +157,7 @@ func start_combat():
 		else:
 			# If player did not attack during beat interval
 			if not attempted and beat_start:
-				atk_miss.play()	
+				atk_miss.play();
 				player_was_damaged()
 				killed_enemy = false
 			if current_beat == rhythm[1] - 1:
@@ -222,6 +225,7 @@ func enemy_attack():
 	
 func enemy_killed():
 	signal_bus_sender.send_enemy_was_killed(enemy)
+	enemy_death.play()
 
 		
 func _on_player_wins_body_entered(body: Node2D) -> void:

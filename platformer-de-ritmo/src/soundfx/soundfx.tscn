@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsjo8et0etdou"]
+[gd_scene load_steps=12 format=3 uid="uid://dsjo8et0etdou"]
 
 [ext_resource type="AudioStream" uid="uid://csc78johthmhe" path="res://assets/sfx/attack_good.wav" id="1_5hjp8"]
 [ext_resource type="AudioStream" uid="uid://c6ax1wjujqysp" path="res://assets/sfx/attack_wrong.wav" id="2_jbajk"]
 [ext_resource type="AudioStream" uid="uid://bkyyowbucnyyx" path="res://assets/sfx/attack_miss.wav" id="3_amr5w"]
 [ext_resource type="AudioStream" uid="uid://ic57v0gwqbbo" path="res://assets/sfx/attack_cyber_beast.wav" id="4_amr5w"]
+[ext_resource type="AudioStream" uid="uid://cr4ryup4rdpey" path="res://assets/sfx/knight_walk1.mp3" id="5_ffs3k"]
+[ext_resource type="AudioStream" uid="uid://0t4kiubgsiak" path="res://assets/sfx/knight_walk2.mp3" id="6_hdtji"]
+[ext_resource type="AudioStream" uid="uid://dbm5f61h4cvwl" path="res://assets/sfx/knight_jump.mp3" id="7_ujney"]
+[ext_resource type="AudioStream" uid="uid://nday54ihacf" path="res://assets/sfx/knight_fall.mp3" id="8_n3nd1"]
+[ext_resource type="AudioStream" uid="uid://ccj1exg46ilid" path="res://assets/sfx/enemy_death.mp3" id="9_sdps0"]
+[ext_resource type="AudioStream" uid="uid://b4qy6f4ld73qy" path="res://assets/sfx/enemy_detect.mp3" id="10_oa6xa"]
+[ext_resource type="AudioStream" uid="uid://fwgcdc5jodjy" path="res://assets/sfx/knight_death.mp3" id="11_hdtji"]
 
 [node name="Soundfx" type="Node"]
 
@@ -21,3 +28,30 @@ volume_db = -5.0
 [node name="AttackCyberBeast" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_amr5w")
 volume_db = -2.0
+
+[node name="KnightWalk1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ffs3k")
+volume_db = -10.0
+
+[node name="KnightWalk2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_hdtji")
+volume_db = -10.0
+
+[node name="KnightJump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ujney")
+volume_db = 5.0
+pitch_scale = 1.5
+
+[node name="KnightFall" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_n3nd1")
+volume_db = 5.0
+
+[node name="EnemyDeath" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_sdps0")
+
+[node name="EnemyDetect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_oa6xa")
+
+[node name="KnightDeath" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_hdtji")
+volume_db = -5.0
