@@ -31,4 +31,4 @@ O jogador não pode sair do combate, a não ser que ele elimine o inimigo ou sej
 
 | Menu inicial | Jogador eliminando um inimigo |
 | :---: | :---: |
-| <img src="https://github.com/user-attachments/assets/327d67d8-4c9a-4cab-95ed-c4ec256e1d1f" width="500"> | <img src="https://github.com/user-attachments/assets/32bbba35-0ba6-40c2-acf7-462996a01c8c" width="475"> |
+| <img src="https://github.com/user-attachments/assets/327d67d8-4c9a-4cab-95ed-c4ec256e1d1f" width="90%"> | <img src="https://github.com/user-attachments/assets/32bbba35-0ba6-40c2-acf7-462996a01c8c" width="90%"> |
