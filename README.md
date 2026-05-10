@@ -2,9 +2,9 @@
 
 # Rhythm Knight
 
-Rhythm Knight é um jogo de plataforma com mecânicas de jogos de ritmo, desenvolvido durante o primeiro semestre de 2025 no programa de treinamento para desenvolvimento de jogos do grupo [USPGameDev](usp.game.dev.br).
+Rhythm Knight é um jogo de plataforma com mecânicas de jogos de ritmo, desenvolvido durante o primeiro semestre de 2025 no programa de treinamento para desenvolvimento de jogos do grupo [USPGameDev](https://usp.game.dev.br).
 
-Este jogo foi feito com o motor de jogo [Godot](godotengine.org/).
+Este jogo foi feito com o motor de jogo [Godot](https://godotengine.org/).
 
 ## Informações Importantes
 
